@@ -1,0 +1,5 @@
+{
+  "directory": "app/bower_components",
+  "https-proxy":"http://nsn:qazwsx@proxy2.bsuir.by:8080",
+  "interactive": false
+}

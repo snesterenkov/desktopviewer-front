@@ -1,0 +1,56 @@
+<div ng-show="currentItem != null">
+
+    <div >
+        <label for="title">id</label>
+        <input type="text" ng-model="currentItem.id" id="title" disabled="true" readonly="true"/>
+    </div>
+    <div >
+        <label for="title">Name</label>
+        <input type="text" ng-model="currentItem.name"/>
+    </div>
+    <div >
+        <label for="title">Password</label>
+        <input type="password" ng-model="currentItem.password"/>
+    </div>
+    <div >
+        <label for="title">First Name</label>
+        <input type="text" ng-model="currentItem.firstName"/>
+    </div>
+    <div >
+        <label for="title">Last Name</label>
+        <input type="text" ng-model="currentItem.lastName"/>
+    </div>
+
+    <button ng-show="saveMode == true" ng-click="saveNewItem()">Save</button>
+    <button ng-show="updateMode == true" ng-click="updateItem()">Update</button>
+    <button ng-click="cancel()">Cancel</button>
+</div>
+<button ng-show="currentItem == null" ng-click="createNewItem()">Add user</button>
+
+<h3>User List</h3>
+<div ng-show="items.length == 0">
+    No user found
+</div>
+
+<table ng-show="items.length > 0">
+    <thead>
+    <tr>
+        <th>Action</th>
+        <th>User id</th>
+        <th>User First Name</th>
+        <th>User Last Name</th>
+        <th>User Name</th>
+        <th>User Password</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="user in items">
+        <td><button ng-click="deleteItem(user)">R</button><button ng-click="getItemForUpdate(user)">Up</button></td>
+        <td>{{user.id}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.password}}</td>
+    </tr>
+    </tbody>
+</table>
