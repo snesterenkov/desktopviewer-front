@@ -17,12 +17,5 @@ app.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
     $httpProvider.interceptors.push('authInjector');
 }]);
 
-app.config(function($sceDelegateProvider) {
-    $sceDelegateProvider.resourceUrlWhitelist([
-        'self',
-        // Allow loading from our assets domain.  Notice the difference between * and **.
-        'http://localhost:8080/user'
-    ]);
-});
 
 
