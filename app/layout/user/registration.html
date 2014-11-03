@@ -1,0 +1,141 @@
+<div>
+    <form name="registrationForm">
+        <div>
+            <table>
+                <div>
+                    <tr>
+                        <td>
+                            <label>Login:</label>
+                        </td>
+                        <td ng-show="registrationSuccess == true">
+                            {{currentItem.login}}
+                        </td>
+                        <td ng-show="registrationSuccess == false">
+                            <input name="login"  type="text" ng-model="currentItem.login"
+                                   required placeholder="Login"
+                                   style="margin-bottom: 5px; margin-top: 5px;">
+                        </td>
+                        <td ng-show="registrationForm.login.$dirty">
+                            <div style="color: red;">
+                                <small ng-show="registrationForm.login.$error.required">
+                                    Your login is required.
+                                </small>
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+                <div>
+                    <tr>
+                        <td>
+                            <label>First name:</label>
+                        </td>
+                        <td ng-show="registrationSuccess == true">
+                            {{currentItem.firstName}}
+                        </td>
+                        <td ng-show="registrationSuccess == false">
+                            <input name="firstName"  type="text" ng-model="currentItem.firstName"
+                                   required placeholder="First name"
+                                   style="margin-bottom: 5px; margin-top: 5px;"/>
+                        </td>
+                        <td ng-show="registrationForm.firstName.$dirty">
+                            <div style="color: red;">
+                                <small ng-show="registrationForm.firstName.$error.required">
+                                    Your first name is required.
+                                </small>
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+                <div>
+                    <tr>
+                        <td>
+                            <label>Last name:</label>
+                        </td>
+                        <td ng-show="registrationSuccess == true">
+                            {{currentItem.lastName}}
+                        </td>
+                        <td ng-show="registrationSuccess == false">
+                            <input name="lastName" type="text" ng-model="currentItem.lastName"
+                                   required placeholder="Last name"
+                                   style="margin-bottom: 5px; margin-top: 5px;"/>
+                        </td>
+                        <td ng-show="registrationForm.lastName.$dirty">
+                            <div  style="color: red;">
+                                <small ng-show="registrationForm.lastName.$error.required">
+                                    Your last name is required.
+                                </small>
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+                <div>
+                    <tr>
+                        <td>
+                            <label>Email:</label>
+                        </td>
+                        <td ng-show="registrationSuccess == true">
+                            {{currentItem.email}}
+                        </td>
+                        <td ng-show="registrationSuccess == false">
+                            <input name="email" type="email" ng-model="currentItem.email"
+                                   required placeholder="Email"
+                                   style="margin-bottom: 5px; margin-top: 5px;"/>
+                        </td>
+                        <td ng-show="registrationForm.email.$dirty">
+                            <div style="color: red;">
+                                <small ng-show="registrationForm.email.$error.required">
+                                    Your email is required.
+                                </small>
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+                <div>
+                    <tr ng-show="registrationSuccess == false">
+                        <td>
+                            <label>Password:</label>
+                        </td>
+                        <td>
+                            <input name="pass" type="password" ng-model="currentItem.password" required placeholder="Password"
+                                   ng-change="validateSubmittedPassword()"
+                                   style="margin-bottom: 5px; margin-top: 5px;"/>
+                        </td>
+                        <td ng-show="registrationForm.pass.$dirty">
+                            <div style="color: red;">
+                                <small ng-show="registrationForm.pass.$error.required">
+                                    Your password is required!
+                                </small>
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+                <div>
+                    <tr ng-show="registrationSuccess == false">
+                        <td>
+                            <label>Password confirm:</label>
+                        </td>
+                        <td>
+                            <input name="passRepeat" type="password" ng-model="passwordRepeat" required placeholder="Password confirm"
+                                   ng-change="validateSubmittedPassword()"
+                                   style="margin-bottom: 5px; margin-top: 5px;"/>
+                        </td>
+                        <td ng-show="(passConfirmed == false) && registrationForm.passRepeat.$dirty">
+                            <div style="color: red;">
+                                <small>
+                                    Password and confirmed password are not equal!
+                                </small>
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+                <div>
+                    <tr ng-show="registrationSuccess == false">
+                        <td>
+                            <button ng-click="submitRegistration()">Submit</button>
+                        </td>
+                    </tr>
+                </div>
+            </table>
+        </div>
+    </form>
+</div>

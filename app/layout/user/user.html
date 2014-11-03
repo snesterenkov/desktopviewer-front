@@ -21,8 +21,8 @@
         <input type="text" ng-model="currentItem.lastName"/>
     </div>
 
-    <button ng-show="saveMode == true" ng-click="saveNewItem()">Save</button>
-    <button ng-show="updateMode == true" ng-click="updateItem()">Update</button>
+    <button ng-show="saveMode == true" ng-click="saveUser()">Save</button>
+    <button ng-show="updateMode == true" ng-click="updateUser()">Update</button>
     <button ng-click="cancel()">Cancel</button>
 </div>
 <button ng-show="currentItem == null" ng-click="createNewItem()">Add user</button>
@@ -45,7 +45,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="user in items">
-        <td><button ng-click="deleteItem(user)">R</button><button ng-click="getItemForUpdate(user)">Up</button></td>
+        <td><button ng-click="deleteUser(user)">R</button><button ng-click="getItemForUpdate(user)">Up</button></td>
         <td>{{user.id}}</td>
         <td>{{user.firstName}}</td>
         <td>{{user.lastName}}</td>

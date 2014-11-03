@@ -7,8 +7,12 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/user', {
         templateUrl: 'layout/user/user.html',
         controller: UserController
-    });
-    $routeProvider.otherwise({redirectTo: '/user'});
+    })
+        .when('/registration', {
+        templateUrl: 'layout/user/registration.html',
+        controller: RegistrationUserController
+    })
+        .otherwise({redirectTo: '/user'});
 }]);
 
 app.config(function($sceDelegateProvider) {
