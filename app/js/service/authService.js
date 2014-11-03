@@ -10,6 +10,8 @@ services
                     var params = {};
                     if(config.params != undefined)
                         params = config.params;
+                    else
+                        config.params = params;
                     params['client'] = window.sessionStorage.client;
                     params['signature'] = createSignature(url,params).toString();
                 }
