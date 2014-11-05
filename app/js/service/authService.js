@@ -4,7 +4,7 @@ services
     .factory('authInjector', function (SERVER_URL) {
         var authInjector = {
             request: function (config) {
-                if (config.url.contains(SERVER_URL)) {
+                if (config.url.indexOf(SERVER_URL) != -1) {
                     var url = config.url.replace(SERVER_URL, "");
                     var params = {};
                     if (config.params != undefined)
