@@ -11,7 +11,7 @@ services
                         params = config.params;
                     else
                         config.params = params;
-                    params['client'] = window.sessionStorage.client;
+                    params['client'] = window.localStorage.client;
                     params['signature'] = createSignature(url, params).toString();
                 }
                 return config;
@@ -37,7 +37,7 @@ services
         for (var key in params) {
             paramNameArrays.push(key);
         }
-        var signature = window.sessionStorage.password + ':' + url;
+        var signature = window.localStorage.password + ':' + url;
         paramNameArrays.sort();
         paramNameArrays.forEach(function (entry) {
             signature = signature + ":" + entry + ":" + params[entry];

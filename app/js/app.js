@@ -7,14 +7,19 @@ app.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
     $routeProvider.when('/user', {
         templateUrl: 'layout/user/user.html',
         controller: UserController
-    });
-    $routeProvider.when('/login', {
+    })
+    .when('/login', {
         templateUrl: 'layout/login.html',
         controller: LoginController
-    });
-    $routeProvider.otherwise({redirectTo: '/login'});
+    })
+    .when('/logout', {
+        templateUrl: 'layout/logout.html',
+        controller: LogoutController
+    })
+    .otherwise({redirectTo: '/login'});
 
     $httpProvider.interceptors.push('authInjector');
+    $httpProvider.interceptors.push('errorInterceptor');
 }]);
 
 

@@ -9,7 +9,7 @@
             <input type="password" id="password" ng-model="password"/>
         </div>
         <div >
-            <span ng-show="loginForm.$error.accessDenied">{{accessDeniedMessage}}</span>
+            <span ng-show="loginForm.$error.accessDenied">Password or user is wrong</span>
         </div>
 
         <button ng-click="authorized(login,password)">Login</button>

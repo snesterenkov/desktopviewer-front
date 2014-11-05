@@ -7,6 +7,6 @@ var UserController = function($injector, $scope, User) {
         Service: User
     })
 
-    $scope.authorizedUser = window.sessionStorage.client;
+    $scope.authorizedUser = window.localStorage.client;
 
 }
