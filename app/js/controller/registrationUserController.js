@@ -7,7 +7,7 @@ var RegistrationUserController = function($injector, $scope, User){
         Service : User
     });
 
-    $scope.createNewItem();
+    $scope.currentItem = new User();
     $scope.registrationSuccess = false;
     $scope.passConfirmed = false;
     $scope.isLoginExists = false;
@@ -17,7 +17,7 @@ var RegistrationUserController = function($injector, $scope, User){
         $scope.validateRegistration();
         $scope.validateSubmittedPassword();
         if($scope.validated && $scope.passConfirmed) {
-            $scope.saveNewItem();
+            $scope.currentItem.save();
             $scope.registrationSuccess = true;
         }
     };

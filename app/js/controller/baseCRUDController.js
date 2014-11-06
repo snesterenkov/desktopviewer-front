@@ -4,15 +4,17 @@ var BaseController = function($scope,Service) {
         $scope.items = Service.query();
     };
 
-    $scope.saveNewItem = function(callback) {
+    $scope.saveNewItem = function() {
         $scope.currentItem.$save(function(){
+            $scope.fetchItemList();
             $scope.saveMode = false;
+            $scope.currentItem = null;
         });
     };
 
-    $scope.deleteItem = function(item, callback) {
+    $scope.deleteItem = function(item) {
         item.$delete(function(){
-            callback();
+            $scope.fetchItemList();
         });
     };
 
@@ -32,10 +34,13 @@ var BaseController = function($scope,Service) {
         $scope.updateMode = true;
     };
 
-    $scope.updateItem = function(callback){
+    $scope.updateItem = function(){
         $scope.currentItem.$update(function(){
+            $scope.fetchItemList();
             $scope.updateMode = false;
-            callback();
+            $scope.currentItem = null;
         });
     };
+
+    $scope.fetchItemList();
 }

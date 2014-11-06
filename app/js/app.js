@@ -7,11 +7,11 @@ app.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
     $routeProvider.when('/user', {
         templateUrl: 'layout/user/user.html',
         controller: UserController
-    })
+        })
         .when('/registration', {
         templateUrl: 'layout/user/registration.html',
         controller: RegistrationUserController
-    })
+        })
         .when('/login', {
             templateUrl: 'layout/login.html',
             controller: LoginController
