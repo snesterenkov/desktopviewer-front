@@ -1,28 +1,27 @@
 'use strict';
 
-var LoginController = function($location,$injector, $scope, $rootScope, $http, SERVER_URL) {
+var LoginController = function ($location, $injector, $scope, $rootScope, $http, SERVER_URL, authorization) {
+
 
     var successAuthorizedUrl = 'user';
     var url = '/user/authorized';
 
-    $scope.authorized = function(login,password) {
-          window.sessionStorage.client = login;
-          window.sessionStorage.password = password;
+    $scope.authorized = function (login, password) {
+        window.localStorage.client = login;
+        window.localStorage.password = password;
 
-          $http.get(SERVER_URL + url, {
-                 params: {
-                     login:login
-                 }
-              }
-          ).success(function(authorizedUser){
-               $scope.$evalAsync(successAuthorized(authorizedUser));
-          }).error(function(){
+        var success = function (data) {
+            $location.path(successAuthorizedUrl);
+        };
 
-          });
+        var error = function (error) {
+            window.localStorage.removeItem('client');
+            window.localStorage.removeItem('password');
+
+            $scope.loginForm.$setValidity("accessDenied",false);
+        };
+
+        authorization.login(url,login).success(success).error(error);
+
     };
-
-    function successAuthorized(authorizedUser) {
-        $rootScope.authorizedUser = authorizedUser;
-        $location.path(successAuthorizedUrl);
-    }
 }

@@ -12,7 +12,7 @@
                         </td>
                         <td ng-show="registrationSuccess == false">
                             <input name="login"  type="text" ng-model="currentItem.login"
-                                   required placeholder="Login"
+                                   required placeholder="Login" ng-blur="checkForExistsLogin()"
                                    style="margin-bottom: 5px; margin-top: 5px;">
                         </td>
                         <td ng-show="registrationForm.login.$dirty">

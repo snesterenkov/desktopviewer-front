@@ -2,23 +2,23 @@
 
 var RegistrationUserController = function($injector, $scope, User){
 
-    $injector.invoke(BaseController, this, {
-        $scope: $scope,
-        Service : User
-    });
-
     $scope.currentItem = new User();
     $scope.registrationSuccess = false;
     $scope.passConfirmed = false;
     $scope.isLoginExists = false;
     $scope.validated = false;
+    $scope.loginIsExists = false;
 
-    $scope.submitRegistration = function(){
+    $scope.submitRegistration = function() {
         $scope.validateRegistration();
         $scope.validateSubmittedPassword();
-        if($scope.validated && $scope.passConfirmed) {
-            $scope.currentItem.save();
-            $scope.registrationSuccess = true;
+        if ($scope.validated && $scope.passConfirmed) {
+            $scope.currentItem.$save(function (value, responseHeader) {
+                $scope.loginIsExists = false;
+                $scope.registrationSuccess = true;
+            }, function (httpResponse) {
+                $scope.loginIsExists = true;
+            });
         }
     };
 
@@ -43,5 +43,14 @@ var RegistrationUserController = function($injector, $scope, User){
         if($scope.currentItem.login == null || $scope.currentItem.login == ''){
             $scope.validated = false;
         }
+    }
+
+    var error = function(){
+        $scope.loginIsExists = true;
+        $scope.registrationSuccess = true;
+    }
+
+    var success = function(){
+        $scope.loginIsExists = false;
     }
 }
