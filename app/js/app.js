@@ -22,5 +22,10 @@ app.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
     $httpProvider.interceptors.push('errorInterceptor');
 }]);
 
-
+app.run(['$rootScope', '$location', 'authorization', function ($rootScope, $location, authorization) {
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
+       if(!authorization.isLoggedIn())
+           $location.path('/login');
+    });
+}]);
 

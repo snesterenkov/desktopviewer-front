@@ -28,6 +28,12 @@ services
                         }
                     }
                 )
+            } ,
+            isLoggedIn: function() {
+                if(window.localStorage.client != undefined && window.localStorage.password != undefined)
+                    return true;
+                else
+                    return false;
             }
         };
     });
