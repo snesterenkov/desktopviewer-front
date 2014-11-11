@@ -1,0 +1,17 @@
+#center-content {
+    padding-top: 50px;
+}
+
+#menu-content {
+    font-size: 12px;
+    color: #595f69;
+    display: block;
+    margin-right: 0;
+    position: relative;
+    text-decoration: none;
+}
+
+#main-content li a {
+    color: #595f69;
+    font-size: 12px;
+}
