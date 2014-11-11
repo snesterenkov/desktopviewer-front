@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Client desktopview</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/default.css">
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -22,9 +23,17 @@
     <script src="js/error/errorInterceptor.js"></script>
     <script src="js/service/userServices.js"></script>
     <script src="js/service/authService.js"></script>
+    <script src="js/directive/menuDirective.js"></script>
     <script src="js/app.constant.js"></script>
+
 </head>
 <body>
-<div ng-view></div>
+
+
+<top-menu></top-menu>
+
+<div ng-view id="center-content">
+</div>
+
 </body>
 </html>

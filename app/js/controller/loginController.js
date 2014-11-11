@@ -1,6 +1,6 @@
 'use strict';
 
-var LoginController = function ($location, $injector, $scope, $rootScope, $http, SERVER_URL, authorization) {
+var LoginController = function ($location, $injector, $scope, $rootScope, authorization) {
 
 
     var successAuthorizedUrl = 'user';
@@ -12,6 +12,7 @@ var LoginController = function ($location, $injector, $scope, $rootScope, $http,
 
         var success = function (data) {
             $location.path(successAuthorizedUrl);
+            $rootScope.$broadcast('successAuthorizedEvent');
         };
 
         var error = function (error) {

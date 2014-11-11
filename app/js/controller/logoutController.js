@@ -1,12 +1,11 @@
 'use strict';
 
-var LogoutController = function ($location, $injector, $scope) {
-
-    var url = '/login';
+var LogoutController = function ($scope,authorization) {
 
     $scope.logout = function () {
         window.localStorage.removeItem('client');
         window.localStorage.removeItem('password');
-        $location.path(url);
+        $scope.authorizedUser = "";
+        $scope.isLoggedIn = authorization.isLoggedIn();
     };
 }

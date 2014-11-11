@@ -1,7 +1,8 @@
 'use strict';
 
-var app = angular.module('app', ['ngRoute', 'app.services']);
+var app = angular.module('app', ['ngRoute', 'app.services', 'app.directives']);
 var services = angular.module('app.services', ['ngResource']);
+var directives = angular.module('app.directives', ['ngResource']);
 
 app.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProvider) {
     $routeProvider.when('/user', {
@@ -20,7 +21,7 @@ app.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
         templateUrl: 'layout/logout.html',
         controller: LogoutController
     })
-    .otherwise({redirectTo: '/login'});
+    .otherwise({redirectTo: '/'});
 
     $httpProvider.interceptors.push('authInjector');
     $httpProvider.interceptors.push('errorInterceptor');
