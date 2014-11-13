@@ -21,9 +21,11 @@ var BaseController = function($scope,Service) {
     $scope.createNewItem = function(){
         $scope.currentItem = new Service();
         $scope.saveMode = true;
+        $scope.updateMode = false;
     };
 
     $scope.cancel = function(){
+        $scope.fetchItemList();
         $scope.currentItem = null;
         $scope.saveMode = false;
         $scope.updateMode = false;
@@ -32,6 +34,7 @@ var BaseController = function($scope,Service) {
     $scope.getItemForUpdate = function(item){
         $scope.currentItem = item;
         $scope.updateMode = true;
+        $scope.saveMode = false;
     };
 
     $scope.updateItem = function(){
