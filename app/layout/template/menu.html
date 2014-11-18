@@ -1,17 +1,21 @@
-<div class="container" ng-show="isLoggedIn">
+<div class="container" >
     <div class="navbar navbar-fixed-top navbar-default">
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" ng-show="isLoggedIn">
                 <li><a href="#/user">User</a></li>
                 <li><a href="#/department">Department</a></li>
                 <li><a href="#/company">Company</a></li>
                 <li><a href="#/project">Project</a></li>
-                <li><a href="#/registration">Registration</a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn">
                 <li><a href="#">{{authorizedUser}}</a></li>
                 <li><a href="#/login" ng-click="logout()">Sign out</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" ng-show="!isLoggedIn">
+                <li><a href="#/registration">Registration</a></li>
+                <li><a href="#/login">Sign in</a></li>
             </ul>
         </div>
     </div>

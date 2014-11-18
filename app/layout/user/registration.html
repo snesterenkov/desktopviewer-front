@@ -1,5 +1,6 @@
 <div>
     <form name="registrationForm">
+        <label ng-show="registrationSuccess == true">Successful registration</label>
         <div>
             <table>
                 <div>
@@ -131,7 +132,7 @@
                 <div>
                     <tr ng-show="registrationSuccess == false">
                         <td>
-                            <button ng-click="submitRegistration()">Submit</button>
+                            <button class="btn btn-primary btn-sm" ng-click="submitRegistration()">Submit</button>
                         </td>
                     </tr>
                 </div>

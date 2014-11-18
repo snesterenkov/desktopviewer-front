@@ -29,7 +29,7 @@ app.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProv
 
 app.run(['$rootScope', '$location', 'authorization', function ($rootScope, $location, authorization) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-       if(!authorization.isLoggedIn())
+       if(!authorization.isLoggedIn() && next.originalPath != '/registration')
            $location.path('/login');
     });
 }]);
