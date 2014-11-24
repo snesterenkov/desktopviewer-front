@@ -1,0 +1,79 @@
+<div class="modal-dialog" ng-controller="ProfileController">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">×
+            </button>
+
+            <h3>Logged as: {{currentItem.login}}</h3>
+        </div>
+        <form name="editProfileForm" class="form-horizontal" novalidate >
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <label ng-show="updatedSuccess == true">Account was successfully updated.</label>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{'has-error': editProfileForm.login.$invalid}">
+                    <label class="col-sm-2  control-label">Login</label>
+
+                    <div class="col-sm-10">
+                        <input name="login" class="form-control" type="text" ng-model="currentItem.login" required/>
+
+                        <p ng-show="editProfileForm.login.$invalid" class="help-block">Login is required</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': editProfileForm.firstName.$invalid}">
+                    <label  class="col-sm-2  control-label">First&nbsp;Name</label>
+
+                    <div class="col-sm-10">
+                        <input name="firstName" class="form-control" type="text" ng-model="currentItem.firstName"/>
+
+                        <p ng-show="editProfileForm.firstName.$invalid" class="help-block">First name is required</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': editProfileForm.lastName.$invalid}">
+                    <label  class="col-sm-2  control-label">Last&nbsp;Name</label>
+
+                    <div class="col-sm-10">
+                        <input name="lastName" class="form-control" type="text" ng-model="currentItem.lastName"/>
+
+                        <p ng-show="editProfileForm.lastName.$invalid" class="help-block">Last name is required</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="saveMode == true"
+                     ng-class="{'has-error': editProfileForm.password.$invalid}">
+                    <label class="col-sm-2  control-label">Password</label>
+
+                    <div class="col-sm-10">
+                        <input class="form-control" name="password" type="password" ng-model="currentItem.password"
+                               ng-required="saveMode == true"/>
+
+                        <p ng-show="editProfileForm.password.$invalid" class="help-block">Password is required</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': editProfileForm.email.$invalid}">
+                    <label class="col-sm-2  control-label">Email</label>
+
+                    <div class="col-sm-10">
+                        <input type="email" name="email" class="form-control" type="text" ng-model="currentItem.email"
+                               required/>
+
+                        <p ng-show="editProfileForm.email.$invalid" class="help-block">Enter a valid email.</p>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+
+                    <button ng-disabled="editProfileForm.$invalid" ng-click="updateItem()"
+                            class="btn btn-primary btn-sm" data-toggle="modal"
+                            >
+                        Save
+                    </button>
+
+                    <button ng-click="cancel()" class="btn pull-left btn-sm" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
