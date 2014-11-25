@@ -1,10 +1,14 @@
 directives.directive('topMenu', function ($rootScope,authorization) {
     return {
         link: function (scope, element, attrs) {
-            login(scope,authorization);
-            $rootScope.$on('successAuthorizedEvent', function()
+
+            scope.isLoggedIn = authorization.isLoggedIn();
+            scope.authorizedUser = window.localStorage.client;;
+
+            $rootScope.$on('successAuthorizedEvent', function(event,user)
             {
-               login(scope,authorization)
+                scope.isLoggedIn = authorization.isLoggedIn();
+                scope.authorizedUser = user.login;
             });
         },
         templateUrl: 'layout/template/menu.html',
@@ -13,8 +17,3 @@ directives.directive('topMenu', function ($rootScope,authorization) {
         controller: LogoutController
     }
 });
-
- function login(scope,authorization){
-     scope.isLoggedIn = authorization.isLoggedIn();
-     scope.authorizedUser = window.localStorage.client;
- }

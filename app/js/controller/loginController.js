@@ -10,9 +10,9 @@ var LoginController = function ($location, $injector, $scope, $rootScope, author
         window.localStorage.client = login;
         window.localStorage.password = password;
 
-        var success = function (data) {
+        var success = function (user) {
             $location.path(successAuthorizedUrl);
-            $rootScope.$broadcast('successAuthorizedEvent');
+            $rootScope.$broadcast('successAuthorizedEvent',user);
         };
 
         var error = function (error) {
