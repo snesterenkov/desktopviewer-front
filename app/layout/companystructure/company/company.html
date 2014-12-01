@@ -1,0 +1,36 @@
+
+<button type="button" class="btn btn-success btn-sm" ng-click="createNewItem()" data-toggle="modal"
+        data-target="#editAndAddModal">
+    Create new company
+</button>
+
+<div class="modal fade" ng-include="'layout/companystructure/company/editAndAdd.html'" id="editAndAddModal" role="dialog"
+     aria-hidden="true"></div>
+<br/>
+<br/>
+
+<table ng-show="items.length > 0" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Company name</th>
+            <th>Company status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="company in items">
+            <td>{{company.name}}</td>
+            <td>{{company.status}}</td>
+            <td>
+                <button class="btn btn-primary btn-sm" ng-show="company.status !='CLOSED'" ng-click="getItemForUpdate(company)" data-toggle="modal"
+                        data-target="#editAndAddModal">Edit
+                </button>
+                <button class="btn btn-success btn-sm" ng-show="company.status == 'PAUSED'" ng-click="changeStatusController(company.id,'OPEN')"> Resume
+                </button>
+                <button class="btn btn-info btn-sm" ng-show="company.status == 'OPEN'" ng-click="changeStatusController(company.id,'PAUSED')"> Paused
+                </button>
+                <button class="btn btn-warning btn-sm" ng-show="company.status !='CLOSED'" ng-click="changeStatusController(company.id,'CLOSED')"> Closed
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

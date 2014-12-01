@@ -25,6 +25,10 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
             templateUrl: 'layout/user/editProfile.html'
 
         })
+        .when('/company', {
+            templateUrl: 'layout/companystructure/company/company.html',
+            controller: CompanyController
+        })
         .otherwise({redirectTo: '/'});
 
     $httpProvider.interceptors.push('authInjector');

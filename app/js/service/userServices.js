@@ -7,4 +7,4 @@ services
                 method: 'PUT'
             }
         });
-    })
+    });
