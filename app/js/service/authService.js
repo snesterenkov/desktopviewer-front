@@ -12,7 +12,8 @@ services
                     else
                         config.params = params;
                     params['client'] = window.localStorage.client;
-                    params['signature'] = createSignature(url, params).toString();
+                    if(window.localStorage.client != undefined)
+                        params['signature'] = createSignature(url, params).toString();
                 }
                 return config;
             }

@@ -13,10 +13,11 @@ var RegistrationUserController = function($injector, $scope, User){
         $scope.validateRegistration();
         $scope.validateSubmittedPassword();
         if ($scope.validated && $scope.passConfirmed) {
-            $scope.currentItem.$save(function (value, responseHeader) {
+            $scope.currentItem.$save(function (value, headers) {
                 $scope.loginIsExists = false;
                 $scope.registrationSuccess = true;
-            }, function (httpResponse) {
+                $scope.currentItem = value;
+            }, function (response) {
                 $scope.loginIsExists = true;
             });
         }
