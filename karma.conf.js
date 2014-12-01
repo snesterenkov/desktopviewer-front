@@ -22,7 +22,7 @@ module.exports = function(config) {
         ],
 
 
-        reporters: ['progress', 'coverage'],
+        reporters: ['progress', 'junit', 'coverage'],
 
 
         preprocessors: {
@@ -35,9 +35,9 @@ module.exports = function(config) {
 
         // optionally, configure the reporter
         coverageReporter: {
-            type : 'html',
+            type : 'cobertura',
             dir : 'test/coverage/',
-            file : 'coverage.html'
+            file : 'coverage.xml'
         },
 
 
@@ -68,6 +68,6 @@ module.exports = function(config) {
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
-        singleRun: false
+        singleRun: true
     });
 };
