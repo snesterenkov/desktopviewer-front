@@ -22,7 +22,7 @@ module.exports = function(config) {
         ],
 
 
-        reporters: ['progress', 'junit', 'coverage'],
+        reporters: ['progress', 'coverage'],
 
 
         preprocessors: {
@@ -64,7 +64,7 @@ module.exports = function(config) {
         // - Safari (only Mac)
         // - PhantomJS
         // - IE (only Windows)
-        browsers: ['Firefox'],
+        browsers: ['PhantomJS'],
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
