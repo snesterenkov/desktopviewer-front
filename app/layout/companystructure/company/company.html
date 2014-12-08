@@ -21,7 +21,7 @@
             <td>{{company.name}}</td>
             <td>{{company.status}}</td>
             <td>
-                <button class="btn btn-primary btn-sm" ng-show="company.status !='CLOSED'" ng-click="getItemForUpdate(company)" data-toggle="modal"
+                <button class="btn btn-primary btn-sm" ng-show="company.status == 'OPEN'" ng-click="getItemForUpdate(company)" data-toggle="modal"
                         data-target="#editAndAddModal">Edit
                 </button>
                 <button class="btn btn-success btn-sm" ng-show="company.status == 'PAUSED'" ng-click="changeStatusController(company.id,'OPEN')"> Resume

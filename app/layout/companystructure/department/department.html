@@ -1,0 +1,38 @@
+
+<button type="button" class="btn btn-success btn-sm" ng-click="createDepartmentNewItem()" data-toggle="modal"
+        data-target="#editAndAddModal">
+    Create new department
+</button>
+
+<div class="modal fade" ng-include="'layout/companystructure/department/editAndAddDepartment.html'" id="editAndAddModal" role="dialog"
+     aria-hidden="true"></div>
+<br/>
+<br/>
+
+<table ng-show="items.length > 0" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Department name</th>
+        <th>Deparmnent status</th>
+        <th>Company department</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="department in items">
+        <td>{{department.name}}</td>
+        <td>{{department.status}}</td>
+        <td>{{department.companyDTO.name}}</td>
+        <td>
+            <button class="btn btn-primary btn-sm" ng-show="department.status =='OPEN'" ng-click="getDepartmentItemForUpdate(department)" data-toggle="modal"
+                    data-target="#editAndAddModal">Edit
+            </button>
+            <button class="btn btn-success btn-sm" ng-show="department.status == 'PAUSED' && department.parentStatus == 'OPEN'" ng-click="changeStatusDepartmentController(department.id,'OPEN')"> Resume
+            </button>
+            <button class="btn btn-info btn-sm" ng-show="department.status == 'OPEN' && department.parentStatus == 'OPEN'" ng-click="changeStatusDepartmentController(department.id,'PAUSED')"> Paused
+            </button>
+            <button class="btn btn-warning btn-sm" ng-show="department.status !='CLOSED' && department.parentStatus != 'CLOSED'" ng-click="changeStatusDepartmentController(department.id,'CLOSED')"> Closed
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
