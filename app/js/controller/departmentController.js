@@ -25,18 +25,8 @@ var DepartemntController = function($injector, $scope, Department, changeStatusD
 
     $scope.getDepartmentItemForUpdate = function(item){
         $scope.getItemForUpdate(item);
-        $scope.selectCompany = null;
-        $scope.openCompanyItems = null;
         var successOpenCompany = function (companys) {
             $scope.openCompanyItems = companys;
-            for (var index = 0; index < $scope.openCompanyItems.length; index++) {
-                if( $scope.currentItem.companyid == $scope.openCompanyItems[index].id){
-                    $scope.selectCompany =  $scope.openCompanyItems[index];
-                }
-            }
-            if($scope.selectCompany == null){
-                var i = 0;
-            }
         };
         openCompany.openCompany().success(successOpenCompany);
     }
