@@ -4,7 +4,8 @@ var app = angular.module('app', ['ngRoute', 'app.services', 'app.directives']);
 var services = angular.module('app.services', ['ngResource']);
 var directives = angular.module('app.directives', ['ngResource']);
 
-app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
+app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider,$location) {
+
     $routeProvider.when('/user', {
         templateUrl: 'layout/user/user.html',
         controller: UserController
@@ -33,16 +34,54 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
             templateUrl: 'layout/companystructure/department/department.html',
             controller: DepartemntController
         })
-        .otherwise({redirectTo: '/'});
+        .otherwise({redirectTo: '/login'});
 
     $httpProvider.interceptors.push('authInjector');
     $httpProvider.interceptors.push('errorInterceptor');
+
 }]);
 
-app.run(['$rootScope', '$location', 'authorization', function ($rootScope, $location, authorization) {
+app.run(['$rootScope', '$location', 'authorization', '$q', '$http', function ($rootScope, $location, authorization,$q, $http) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        if (!authorization.isLoggedIn() && next.originalPath != '/registration')
+        if (!authorization.isLoggedIn()  && next.originalPath != '/registration')
             $location.path('/login');
+    });
+
+    $rootScope.$on("$locationChangeStart", function (event, next, current) {
+        var URL = $location.path();
+        var GOOGLE_GET_EMAIL_URL = "https://www.googleapis.com/userinfo/email?alt=json&access_token="
+        if (URL.indexOf("access_token") != -1) {
+            window.localStorage.token = URL.substring(URL.indexOf("=") + 1, URL.indexOf("&"));
+            $http.get(GOOGLE_GET_EMAIL_URL + window.localStorage.token)
+                .success(function (result) {
+                    var authorizationUrl = '/user/email';
+
+                    var success = function (user) {
+                        if(user != "") {
+                            window.localStorage.client = user.login;
+                            $rootScope.$broadcast('successAuthorizedEvent', user);
+                            $location.path('/user');
+
+                        } else {
+                            window.localStorage.removeItem('client');
+                            window.localStorage.removeItem('token');
+                        }
+                    };
+
+                    var error = function (error) {
+                        window.localStorage.removeItem('client');
+                        window.localStorage.removeItem('token');
+                        $location.path('/login');
+                    };
+
+                    authorization.email(authorizationUrl,result.data.email).success(success).error(error);
+
+                }).error(function (error) {
+                    window.localStorage.removeItem('client');
+                    window.localStorage.removeItem('token');
+                    $location.path('/login');
+                });
+        }
     });
 }]);
 

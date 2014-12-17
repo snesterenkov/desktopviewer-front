@@ -12,11 +12,17 @@ services
                     else
                         config.params = params;
                     params['client'] = window.localStorage.client;
-                    if(window.localStorage.client != undefined)
-                        params['signature'] = createSignature(url, params).toString();
+
+                    if(window.localStorage.client != undefined) {
+                        if (localStorage.token != undefined)
+                            params['token'] = localStorage.token;
+                        else
+                            params['signature'] = createSignature(url, params).toString();
+                    }
                 }
                 return config;
             }
+
         };
         return authInjector;
     })
@@ -30,8 +36,16 @@ services
                     }
                 )
             } ,
+            email: function (url, email) {
+                return $http.get(SERVER_URL + url, {
+                        params: {
+                            email: email
+                        }
+                    }
+                )
+            } ,
             isLoggedIn: function() {
-                if(window.localStorage.client != undefined && window.localStorage.password != undefined)
+                if((window.localStorage.client != undefined && window.localStorage.password != undefined) || (window.localStorage.client != undefined && window.localStorage.token != undefined))
                     return true;
                 else
                     return false;
