@@ -33,6 +33,9 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
         .when('/department', {
             templateUrl: 'layout/companystructure/department/department.html',
             controller: DepartemntController
+        }).when('/project', {
+            templateUrl: 'layout/companystructure/project/project.html',
+            controller: ProjectController
         })
         .otherwise({redirectTo: '/login'});
 

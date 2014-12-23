@@ -14,4 +14,11 @@ services
                 return $http.put(SERVER_URL + '/department/changestatus/' + id, '"'+ newStatus + '"')
             }
         };
+    })
+    .factory('openDepartment', function ($rootScope, SERVER_URL, $http) {
+        return {
+            openDepartment: function (id, newStatus) {
+                return $http.get(SERVER_URL + '/department/open');
+            }
+        };
     });
