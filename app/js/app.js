@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('app', ['ngRoute', 'app.services', 'app.directives']);
+var app = angular.module('app', ['ngRoute', 'app.services', 'app.directives',"ui.bootstrap"]);
 var services = angular.module('app.services', ['ngResource']);
 var directives = angular.module('app.directives', ['ngResource']);
 
@@ -24,7 +24,6 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
         })
         .when('/editProfile', {
             templateUrl: 'layout/user/editProfile.html'
-
         })
         .when('/company', {
             templateUrl: 'layout/companystructure/company/company.html',
@@ -36,6 +35,10 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
         }).when('/project', {
             templateUrl: 'layout/companystructure/project/project.html',
             controller: ProjectController
+        })
+        .when('/snapshots', {
+            templateUrl: 'layout/snapshot/snapshotsView.html',
+            controller: SnapshotController
         })
         .otherwise({redirectTo: '/login'});
 

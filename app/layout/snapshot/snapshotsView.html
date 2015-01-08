@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <span ng-repeat="snapshot in snapshotsUser">
+       <span class="col-md-4"><a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}"><img src="data:image/jpg;base64,{{snapshot.file}}" class="thumbnail img-responsive"></a></span>
+    </span>
+</div>
+
+<div class="modal fade" ng-include="'layout/snapshot/snapshotModal.html'" id="snapshotModal" role="dialog"
+     aria-hidden="true"></div>
+
+
