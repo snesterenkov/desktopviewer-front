@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('app', ['ngRoute', 'app.services', 'app.directives',"ui.bootstrap"]);
+var app = angular.module('app', ['ngRoute', 'app.services', 'app.directives',"ui.bootstrap","pascalprecht.translate"]);
 var services = angular.module('app.services', ['ngResource']);
 var directives = angular.module('app.directives', ['ngResource']);
 

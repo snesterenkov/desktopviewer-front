@@ -2,21 +2,35 @@
     <div class="navbar navbar-fixed-top navbar-default">
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav" ng-show="isLoggedIn">
-                <li><a href="#/user">User</a></li>
-                <li><a href="#/department">Department</a></li>
-                <li><a href="#/company">Company</a></li>
-                <li><a href="#/project">Project</a></li>
+                <li><a href="#/user">{{ 'User' | translate }}</a></li>
+                <li><a href="#/department">{{ 'Department' | translate }}</a></li>
+                <li><a href="#/company">{{ 'Company' | translate }}</a></li>
+                <li><a href="#/project">{{ 'Project' | translate }}</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn">
                 <li><a data-toggle="modal" data-target="#editModal">{{authorizedUser}}</a></li>
-                <li><a href="#/login" ng-click="logout()">Sign out</a></li>
+                <li><a href="#/login" ng-click="logout()">{{ 'Sign out' | translate }}</a></li>
+                <li>
+                    <select ng-controller="languageController" name="language" ng-model="selectedLanguage"
+                            ng-options="language.name for language in languages track by language.name"
+                            ng-change="changeLanguageListener()" class="form-control">
+                    </select>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" ng-show="!isLoggedIn">
-                <li><a href="#/registration">Registration</a></li>
-                <li><a href="#/login">Sign in</a></li>
+                <li><a href="#/registration">{{ 'Registration' | translate }}</a></li>
+                <li><a href="#/login">{{ 'Sign in' | translate }}</a></li>
+                <li>
+                    <select ng-controller="languageController" name="language" ng-model="selectedLanguage"
+                            ng-options="language.name for language in languages track by language.name"
+                            ng-change="changeLanguageListener()" class="form-control">
+                    </select>
+                </li>
             </ul>
+
+
 
 
         </div>

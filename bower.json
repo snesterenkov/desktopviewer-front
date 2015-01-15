@@ -18,6 +18,7 @@
         "karma": "latest",
         "jasmine": "latest",
         "karma-jasmine": "latest",
-        "angular-bootstrap": "latest"
+        "angular-bootstrap": "latest",
+        "angular-translate":"latest"
     }
 }
