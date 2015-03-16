@@ -1,13 +1,13 @@
-<div class="modal-dialog" style="height: 305px">
+<div class="modal-dialog">
     <div>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:#000000">Close</button>
     </div>
     <br/>
     <br/>
-    <div>
+    <div style="height: 320px; width: 400px">
         <carousel>
             <slide ng-repeat="snapshot in snapshotsUser" active="snapshot.active">
-                <img ng-src="data:image/jpg;base64,{{snapshot.file}}" style="margin:auto;">
+                <img ng-src="data:image/jpg;base64,{{snapshot.file}}" style="height: 320px; width: 400px">
                 <div class="carousel-caption" style="color: #000000">
                     <p>Note:{{snapshot.note}}</p>
                     <p>Note:{{snapshot.message}}</p>
