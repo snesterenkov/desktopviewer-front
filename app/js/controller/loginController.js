@@ -3,7 +3,7 @@
 var LoginController = function ($location, $injector, $scope, $rootScope, authorization, CLIENT_URL) {
 
 
-    var successAuthorizedUrl = 'user';
+    var successAuthorizedUrl = 'dashboard';
     var url = '/user/authorized';
 
     $scope.authorized = function (login, password) {

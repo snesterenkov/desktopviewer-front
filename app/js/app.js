@@ -4,7 +4,7 @@ var app = angular.module('app', ['ngRoute', 'app.services', 'app.directives',"ui
 var services = angular.module('app.services', ['ngResource']);
 var directives = angular.module('app.directives', ['ngResource']);
 
-app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider,$location) {
+app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
 
     $routeProvider.when('/user', {
         templateUrl: 'layout/user/user.html',
@@ -39,6 +39,13 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
         .when('/snapshots', {
             templateUrl: 'layout/snapshot/snapshotsView.html',
             controller: SnapshotController
+        })
+        .when('/dashboard', {
+            templateUrl: 'layout/user/dashboard/dashboard.html',
+            params: {
+                user: window.localStorage.client
+            },
+            controller: SnapshotsCurrentUserController
         })
         .otherwise({redirectTo: '/login'});
 

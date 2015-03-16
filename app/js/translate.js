@@ -13,7 +13,8 @@ app.config(['$translateProvider', function ($translateProvider) {
         'Sign in': 'Sign in',
         'Sign out': 'Sign out',
         'Please sign in': 'Please sign in',
-        'Password':'Password'
+        'Password':'Password',
+        'Dashboard':'Dashboard'
     });
 
     $translateProvider.translations('ru', {
@@ -26,7 +27,8 @@ app.config(['$translateProvider', function ($translateProvider) {
         'Sign in': 'Войти',
         'Sign out': 'Выйти',
         'Please sign in': 'Войдите пожалуйста',
-        'Password':'Пароль'
+        'Password':'Пароль',
+        'Dashboard':'Личная страница'
     });
 
     $translateProvider.preferredLanguage('ru');

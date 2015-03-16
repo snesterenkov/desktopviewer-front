@@ -1,0 +1,22 @@
+<div>
+    <span ng-repeat="snapshot in snapshotsUser">
+       <span class="col-md-2">
+           <div>
+                <label class="control-label label-success">{{snapshot.message}}</label>
+           </div>
+           <div>
+               <a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}" class="nav">
+                    <img src="data:image/jpg;base64,{{snapshot.file}}" class="thumbnail img-responsive">
+               </a>
+           </div>
+           <label class="control-label">{{snapshot.date}}</label>
+           <div class="progress progress-striped">
+               <div class="progress-bar progress-bar-success" style="width: {{snapshot.userActivityPercent}}%"></div>
+           </div>
+       </span>
+    </span>
+</div>
+
+
+
+
