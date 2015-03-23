@@ -7,8 +7,13 @@
 services
     .factory('snapshots', function ($rootScope, SERVER_URL, $http) {
         return {
-            snapshotsByUser: function (id) {
-                return $http.get(SERVER_URL + '/snapshot/user/snapshots/'+id
+            snapshotsByUserAndDate: function (id, date) {
+                return $http.get(SERVER_URL + '/snapshot/user/snapshots/date/' + id,
+                    {
+                        params: {
+                            date: date
+                        }
+                    }
                 );
             }
         };

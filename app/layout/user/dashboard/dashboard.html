@@ -1,20 +1,30 @@
 <div>
+    <ul class="pager">
+        <li><a class="btn" href="#dashboard" ng-click="goToPreviousDate()">Previous</a></li>
+        <li  style="color: #000000;">{{date}}</li>
+        <li><a class="btn" href="#dashboard" ng-disabled="isMoreOrEqualThanCurrentDate()" ng-click="goToNextDate()">Next</a></li>
+    </ul>
     <span ng-repeat="snapshot in snapshotsUser">
        <span class="col-md-2">
            <div>
                 <label class="control-label label-success">{{snapshot.message}}</label>
            </div>
            <div>
-               <a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}" class="nav">
-                    <img src="data:image/jpg;base64,{{snapshot.file}}" class="thumbnail img-responsive">
+               <a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}" class="nav"
+                       >
+                   <img src="data:image/jpg;base64,{{snapshot.file}}" class="img-responsive"width="300px">
                </a>
            </div>
-           <label class="control-label">{{snapshot.note}}</label>
            <br/>
-           <label class="control-label">{{snapshot.date}}</label>
+           <label class="control-label" style="float: left;">{{snapshot.time}}&nbsp</label>
+
            <div class="progress progress-striped">
-               <div class="progress-bar progress-bar-success" style="width: {{snapshot.userActivityPercent}}%"></div>
+               <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100"
+                        style="width: {{snapshot.userActivityPercent}}%;">
+                       <span style="color: #000000;">{{snapshot.userActivityPercent}}%</span>
+               </div>
            </div>
+
        </span>
     </span>
 </div>
