@@ -1,6 +1,6 @@
 'use strict';
 
-var RegistrationUserController = function($injector, $scope, User){
+app.controller('RegistrationUserController' ,['$injector', '$scope', 'User', function($injector, $scope, User){
 
     $scope.currentItem = new User();
     $scope.registrationSuccess = false;
@@ -54,4 +54,4 @@ var RegistrationUserController = function($injector, $scope, User){
     var success = function(){
         $scope.loginIsExists = false;
     }
-}
+}])

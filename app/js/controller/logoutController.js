@@ -1,6 +1,6 @@
 'use strict';
 
-var LogoutController = function ($scope,authorization) {
+app.controller('LogoutController',['$scope','authorization', function ($scope,authorization) {
 
     $scope.logout = function () {
         window.localStorage.removeItem('client');
@@ -9,4 +9,4 @@ var LogoutController = function ($scope,authorization) {
         $scope.authorizedUser = "";
         $scope.isLoggedIn = authorization.isLoggedIn();
     };
-}
+}])

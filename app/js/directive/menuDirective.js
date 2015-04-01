@@ -14,6 +14,6 @@ directives.directive('topMenu', function ($rootScope,authorization) {
         templateUrl: 'layout/template/menu.html',
         restrict: 'E',
         scope: {},
-        controller: LogoutController
+        controller: 'LogoutController'
     }
 });

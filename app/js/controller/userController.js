@@ -1,9 +1,9 @@
 'use strict';
 
-var UserController = function($injector, $scope, User) {
+app.controller('UserController',[ '$injector', '$scope', 'User', function($injector, $scope, User) {
 
     $injector.invoke(BaseController, this, {
         $scope: $scope,
         Service: User
     })
-}
+}]);

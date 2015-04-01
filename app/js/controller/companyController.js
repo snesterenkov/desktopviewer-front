@@ -1,6 +1,6 @@
 'use strict';
 
-var CompanyController = function($injector, $scope, Company, changeStatusCompany) {
+app.controller('CompanyController',['$injector','$scope', 'Company', 'changeStatusCompany', function($injector, $scope, Company, changeStatusCompany) {
 
     $injector.invoke(BaseController, this, {
         $scope: $scope,
@@ -15,4 +15,4 @@ var CompanyController = function($injector, $scope, Company, changeStatusCompany
 
         changeStatusCompany.changeToNewStatus(id,newstatus).success(success);
     };
-};
+}]);

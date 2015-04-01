@@ -1,10 +1,8 @@
 'use strict';
 
-var SnapshotsCurrentUserController = function($routeParams, snapshots, $scope, authorization, $filter) {
+app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '$scope', 'authorization', function($routeParams, snapshots, $scope, authorization) {
     var userId;
     var user;
-    var date;
-    var currDate;
     var url = '/user/authorized';
 
     var successSnapshotsByUser = function (snapshotsUser) {
@@ -13,27 +11,29 @@ var SnapshotsCurrentUserController = function($routeParams, snapshots, $scope, a
 
     var successLogin = function (user) {
         userId = user.id;
-        currDate = new Date();
-        $scope.date = $filter('date')(new Date(), 'yyyy-M-dd', "UTC/GMT");
+        $scope.date = moment().format('YYYY-MM-DD');
         snapshots.snapshotsByUserAndDate(userId,$scope.date).success(successSnapshotsByUser);
     };
 
-    $scope.goToPreviousDate = function() {
-        $scope.date = $filter('date')(new Date().setDate(new Date(currDate).getDate() - 1), 'yyyy-M-dd', "UTC/GMT") ;
-        currDate =  new Date().setDate(new Date(currDate).getDate() - 1);
+    $scope.goToPreviousDate = function(date) {
+        $scope.date = moment(new Date(date)).subtract(1, 'days').format('YYYY-MM-DD');
         snapshots.snapshotsByUserAndDate(userId,$scope.date).success(successSnapshotsByUser);
     }
 
-    $scope.goToNextDate = function() {
-        $scope.date = $filter('date')(new Date().setDate(new Date(currDate).getDate() + 1), 'yyyy-M-dd', "UTC/GMT") ;
-        currDate =  new Date().setDate(new Date(currDate).getDate() + 1);
+    $scope.goToNextDate = function(date) {
+        $scope.date = moment(new Date(date)).add(1, 'days').format('YYYY-MM-DD');
+        snapshots.snapshotsByUserAndDate(userId,$scope.date).success(successSnapshotsByUser);
+    }
+
+    $scope.goToSelectedDate = function(date) {
+        $scope.date = moment(new Date(date)).format('YYYY-MM-DD');
         snapshots.snapshotsByUserAndDate(userId,$scope.date).success(successSnapshotsByUser);
     }
 
     $scope.isMoreOrEqualThanCurrentDate = function() {
-        return new Date().setDate(new Date(currDate).getDate() + 1) >  new Date();
+        return moment().format('YYYY-MM-DD') ==  moment(new Date($scope.date)).format('YYYY-MM-DD');
     }
 
     authorization.login(url,window.localStorage.client).success(successLogin);
 
-}
+}])

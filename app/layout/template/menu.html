@@ -13,7 +13,7 @@
                 <li><a data-toggle="modal" data-target="#editModal">{{authorizedUser}}</a></li>
                 <li><a href="#/login" ng-click="logout()">{{ 'Sign out' | translate }}</a></li>
                 <li>
-                    <select ng-controller="languageController" name="language" ng-model="selectedLanguage"
+                    <select ng-controller="LanguageController" name="language" ng-model="selectedLanguage"
                             ng-options="language.name for language in languages track by language.name"
                             ng-change="changeLanguageListener()" class="form-control">
                     </select>
@@ -24,7 +24,7 @@
                 <li><a href="#/registration">{{ 'Registration' | translate }}</a></li>
                 <li><a href="#/login">{{ 'Sign in' | translate }}</a></li>
                 <li>
-                    <select ng-controller="languageController" name="language" ng-model="selectedLanguage"
+                    <select ng-controller="LanguageController" name="language" ng-model="selectedLanguage"
                             ng-options="language.name for language in languages track by language.name"
                             ng-change="changeLanguageListener()" class="form-control">
                     </select>
