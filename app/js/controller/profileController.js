@@ -1,6 +1,6 @@
 'use strict';
 
-var ProfileController = function($scope, $rootScope, authorization, User) {
+app.controller('ProfileController', [ '$scope', '$rootScope', 'authorization', 'User', function($scope, $rootScope, authorization, User) {
 
     var url = '/user/authorized';
 
@@ -19,4 +19,4 @@ var ProfileController = function($scope, $rootScope, authorization, User) {
     $scope.cancel = function(){
         $scope.updatedSuccess = false;
     };
-}
+}])

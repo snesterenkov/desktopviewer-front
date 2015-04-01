@@ -1,13 +1,26 @@
 <div>
     <ul class="pager">
-        <li><a class="btn" href="#dashboard" ng-click="goToPreviousDate()">Previous</a></li>
-        <li  style="color: #000000;">{{date}}</li>
-        <li><a class="btn" href="#dashboard" ng-disabled="isMoreOrEqualThanCurrentDate()" ng-click="goToNextDate()">Next</a></li>
+        <li><a class="btn" href="#dashboard" ng-click="goToPreviousDate(date)">Previous</a></li>
+        <li style="color: #000000;">
+            <span class="dropdown">
+                <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                    <div class="input-append"><input type="text" class="input-large" data-ng-model="date" ><span class="add-on"><i
+                            class="icon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker  data-ng-model="date" data-format  data-on-set-time="goToSelectedDate(date)"
+                                    data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
+                </ul>
+            </span>
+        </li>
+        <li><a class="btn" href="#dashboard" ng-disabled="isMoreOrEqualThanCurrentDate()"
+               ng-click="goToNextDate(date)">Next</a></li>
     </ul>
     <span ng-repeat="snapshot in snapshotsUser">
        <span class="col-md-2">
            <div>
-                <label class="control-label label-success">{{snapshot.message}}</label>
+               <label class="control-label label-success">{{snapshot.message}}</label>
            </div>
            <div>
                <a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}" class="nav"

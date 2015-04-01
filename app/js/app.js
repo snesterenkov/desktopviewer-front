@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('app', ['ngRoute', 'app.services', 'app.directives',"ui.bootstrap","pascalprecht.translate"]);
+var app = angular.module('app', ['ngRoute', 'app.services', 'app.directives',"ui.bootstrap",'pascalprecht.translate','ui.bootstrap.datetimepicker']);
 var services = angular.module('app.services', ['ngResource']);
 var directives = angular.module('app.directives', ['ngResource']);
 
@@ -8,44 +8,44 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
 
     $routeProvider.when('/user', {
         templateUrl: 'layout/user/user.html',
-        controller: UserController
+        controller: 'UserController'
     })
         .when('/registration', {
             templateUrl: 'layout/user/registration.html',
-            controller: RegistrationUserController
+            controller: 'RegistrationUserController'
         })
         .when('/login', {
             templateUrl: 'layout/login.html',
-            controller: LoginController
+            controller: 'LoginController'
         })
         .when('/logout', {
             templateUrl: 'layout/logout.html',
-            controller: LogoutController
+            controller: 'LogoutController'
         })
         .when('/editProfile', {
             templateUrl: 'layout/user/editProfile.html'
         })
         .when('/company', {
             templateUrl: 'layout/companystructure/company/company.html',
-            controller: CompanyController
+            controller: 'CompanyController'
         })
         .when('/department', {
             templateUrl: 'layout/companystructure/department/department.html',
-            controller: DepartemntController
+            controller: 'DepartemntController'
         }).when('/project', {
             templateUrl: 'layout/companystructure/project/project.html',
-            controller: ProjectController
+            controller: 'ProjectController'
         })
         .when('/snapshots', {
             templateUrl: 'layout/snapshot/snapshotsView.html',
-            controller: SnapshotController
+            controller: 'SnapshotController'
         })
         .when('/dashboard', {
             templateUrl: 'layout/user/dashboard/dashboard.html',
             params: {
                 user: window.localStorage.client
             },
-            controller: SnapshotsCurrentUserController
+            controller: 'SnapshotsCurrentUserController'
         })
         .otherwise({redirectTo: '/login'});
 

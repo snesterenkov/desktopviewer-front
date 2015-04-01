@@ -1,6 +1,6 @@
 'use strict';
 
-var DepartemntController = function($injector, $scope, Department, changeStatusDepartment, openCompany) {
+app.controller('DepartmentController',['$injector','$scope','Department','changeStatusDepartment','openCompany', function($injector, $scope, Department, changeStatusDepartment, openCompany) {
 
     $injector.invoke(BaseController, this, {
         $scope: $scope,
@@ -30,4 +30,4 @@ var DepartemntController = function($injector, $scope, Department, changeStatusD
         };
         openCompany.openCompany().success(successOpenCompany);
     }
-};
+}]);

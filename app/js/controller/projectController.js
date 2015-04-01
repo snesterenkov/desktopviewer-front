@@ -1,6 +1,6 @@
 'use strict';
 
-var ProjectController = function($injector, $scope, Project, changeStatusProject, openDepartment) {
+app.controller('ProjectController', ['$injector', '$scope', 'Project', 'changeStatusProject', 'openDepartment', function($injector, $scope, Project, changeStatusProject, openDepartment) {
 
     $injector.invoke(BaseController, this, {
         $scope: $scope,
@@ -30,4 +30,4 @@ var ProjectController = function($injector, $scope, Project, changeStatusProject
         };
         openDepartment.openDepartment().success(successOpenDepartment);
     }
-};
+}]);

@@ -1,4 +1,4 @@
-var BaseController = function($scope,Service) {
+app.controller('BaseController',['$scope','Service', function($scope,Service) {
 
     $scope.fetchItemList = function() {
         $scope.items = Service.query();
@@ -46,4 +46,4 @@ var BaseController = function($scope,Service) {
     };
 
     $scope.fetchItemList();
-}
+}])
