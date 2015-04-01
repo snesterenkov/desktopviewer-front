@@ -1,4 +1,6 @@
-var languageController = function($scope,$translate) {
+'use strict';
+
+var LanguageController = function($scope,$translate) {
     $scope.languages = [
         { name: 'ru'},
         { name: 'en'}
