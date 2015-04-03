@@ -47,6 +47,14 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
             },
             controller: 'SnapshotsCurrentUserController'
         })
+        .when('/reports',{
+            templateUrl: 'layout/working_diary/report/reports.html',
+            /*controller: 'ReportsController'*/
+        })
+        .when('/screenshots',{
+            templateUrl: 'layout/working_diary/screenshots/screenshots.html',
+            /*controller: 'ScreenshotsController'*/
+        })
         .otherwise({redirectTo: '/login'});
 
     $httpProvider.interceptors.push('authInjector');

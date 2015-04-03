@@ -7,6 +7,13 @@
                 <li><a href="#/department">{{ 'Department' | translate }}</a></li>
                 <li><a href="#/company">{{ 'Company' | translate }}</a></li>
                 <li><a href="#/project">{{ 'Project' | translate }}</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'WorkingDiary'|translate }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#/reports">{{ 'Reports'|translate }}</a></li>
+                        <li><a href="#/screenshots">{{ 'Screenshots'|translate }}</a></li>
+                    </ul>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn">
