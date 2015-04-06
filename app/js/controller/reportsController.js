@@ -10,8 +10,8 @@ app.controller('ReportsController',['$scope',function($scope){
             $scope.endDate =  moment(new Date($scope.startDate)).format('YYYY-MM-DD');
     };
 
-    $scope.goToSelectedStartDate(startDate){
+    $scope.goToSelectedStartDate(startDate);
 
-    }
+
 
 }]);

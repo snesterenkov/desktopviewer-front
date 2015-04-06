@@ -32,9 +32,7 @@ app.config(['$translateProvider', function ($translateProvider) {
         'Please sign in': 'Войдите пожалуйста',
         'Password':'Пароль',
         'Dashboard':'Личная страница',
-        'WorkingDiary': 'Рабочий дневник',
-        'Reports': 'Отчеты',
-        'Screenshots': 'Снимки рабочего стола'
+        'WorkingDiary': 'Рабочий дневник'
     });
 
     $translateProvider.preferredLanguage('ru');
