@@ -41,11 +41,15 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
             controller: 'SnapshotController'
         })
         .when('/dashboard', {
-            templateUrl: 'layout/user/dashboard/dashboard.html',
+            templateUrl: 'layout/user/report/dashboard.html',
             params: {
                 user: window.localStorage.client
             },
             controller: 'SnapshotsCurrentUserController'
+        })
+        .when('/workDiary', {
+            templateUrl: 'layout/user/report/workDiary.html',
+            controller: 'WorkDiaryController'
         })
         .otherwise({redirectTo: '/login'});
 
