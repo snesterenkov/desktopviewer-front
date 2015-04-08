@@ -1,1 +1,44 @@
-<p ng-repeat="project in userProjects">{{project.name}}</p>
+<div class="container">
+    <div class="row">
+        <fieldset>
+            <legend>{{ 'Filters'|translate }}</legend>
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="selectCompany" class="control-label">{{ 'Company'|translate }}</label>
+                    <select class="form-control" id="selectCompany" ng-model="companyItem"
+                            ng-change="getDepartmentsList(companyItem.id); cancelFilter(); " ng-options="sc.name for sc in companiesList">
+                        <option value="">---------------------</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="selectDepartment" class="control-label">{{ 'Department'|translate }}</label>
+                    <select class="form-control" id="selectDepartment" ng-model="departmentItem"
+                            ng-change="cancelFilter()" ng-options="sd for sd in departmentsList">
+                        <option value="">---------------------</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <br/>
+    <div class="row">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'Company'|translate }}</th>
+                <th>{{ 'Department'|translate }}</th>
+                <th>{{ 'Project'|translate }}</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in userProjects|filter: {companyDTO:companyItem, departmentDTO:{name:departmentItem} }">
+                    <td>{{ item.companyDTO.name }}</td>
+                    <td>{{ item.departmentDTO.name }}</td>
+                    <td>{{ item.projectDTO.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
