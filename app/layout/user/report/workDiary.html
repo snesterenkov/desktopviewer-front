@@ -28,10 +28,10 @@
 </span>
 <span>
     Period:
-     <input type="radio" ng-model="period" ng-change="changePeriod('YEAR')" value="YEAR">YEAR
-     <input type="radio" ng-model="period" ng-change="changePeriod('MONTH')" value="MONTH">MONTH
-     <input type="radio" ng-model="period" ng-change="changePeriod('WEEK')" value="WEEK">WEEK
-     <input type="radio" ng-model="period" ng-change="changePeriod('DAY')" value="DAY" checked>DAY
+     <input type="radio" ng-model="period"  value="YEAR"/>YEAR
+     <input type="radio" ng-model="period"  value="MONTH"/>MONTH
+     <input type="radio" ng-model="period"  value="WEEK"/>WEEK
+     <input type="radio" ng-model="period"  value="DAY" ng-checked="true"/>DAY
 </span>
 <br/>
 <div>
@@ -42,8 +42,9 @@
     <thead>
     <tr>
         <th style="text-align: center;">User FIO</th>
-        <th style="text-align: center;" ng-repeat="(startDate,count) in hoursOnDate[0].hoursDate">{{startDate | date:'yyyy-MM-dd' }}
-           <output style="text-align: center; block: inline" type="text" ng-show="periodTemp != 'DAY'">-{{getPeriodEndDate(startDate)}}</output>
+        <th style="text-align: center;" ng-repeat="(number,dates) in hoursOnDate[0].periodDTOs">
+            {{dates.startDate| date:'yyyy-MM-dd'}}
+            <output  ng-show="dates.startDate != dates.endDate">- {{dates.endDate| date:'yyyy-MM-dd'}}</output>
         </th>
 
     </tr>

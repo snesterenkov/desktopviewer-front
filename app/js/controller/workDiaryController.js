@@ -2,7 +2,7 @@
 
 app.controller('WorkDiaryController', [ '$scope', 'workDiary', function ($scope, workDiary) {
 
-
+    $scope.period = 'DAY';
 
     var successGetHoursByUserFromPeriod  = function (hoursOnDate) {
         $scope.hoursOnDate  = hoursOnDate;
@@ -14,10 +14,6 @@ app.controller('WorkDiaryController', [ '$scope', 'workDiary', function ($scope,
 
     $scope.setEndDate = function(endDate) {
         $scope.endDate = moment(new Date(endDate)).format('YYYY-MM-DD');
-    }
-
-    $scope.changePeriod = function(period) {
-        $scope.periodTemp = period;
     }
 
     $scope.applyFilters = function(period) {
