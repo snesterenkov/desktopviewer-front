@@ -38,7 +38,7 @@ app.controller('ProjectsCurrentUserController',['$scope','user_projects',functio
 
     $scope.getProjects = function(){
         var successProjects = function(projects){
-            $scope.userProjects = projects;
+            $scope.userProjects = projects.sort();
             getCompaniesList(projects);
         }
         user_projects.getUserProjects().success(successProjects);

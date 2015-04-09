@@ -27,6 +27,7 @@
         <table class="table table-hover table-striped">
             <thead>
             <tr>
+                <th>{{ 'Owner' }}</th>
                 <th>{{ 'Company'|translate }}</th>
                 <th>{{ 'Department'|translate }}</th>
                 <th>{{ 'Project'|translate }}</th>
@@ -34,6 +35,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="item in userProjects|filter: {companyDTO:companyItem, departmentDTO:{name:departmentItem} }">
+                    <td>{{ item.isOwner }}</td>
                     <td>{{ item.companyDTO.name }}</td>
                     <td>{{ item.departmentDTO.name }}</td>
                     <td>{{ item.projectDTO.name }}</td>
