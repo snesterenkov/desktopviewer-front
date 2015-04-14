@@ -1,39 +1,86 @@
 
-<span class="dropdown" style="display:inline-block">
-    <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown"
-       data-target="#" href="">
-        <div class="input-append"><input type="text" class="input-large" data-ng-model="startDate" style="color: #000000;" placeholder="Start date"><span
-                class="add-on"><i
-                class="icon-calendar"></i></span>
-        </div>
-    </a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <datetimepicker data-ng-model="startDate" data-format data-on-set-time="setStartDate(startDate)"
-                        data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select', startView:'day', minView:'day'  }"></datetimepicker>
-    </ul>
-</span>
+<div class="container-fluid">
 
-<span class="dropdown" style="display:inline-block; padding-left: 30px;">
-    <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown"
-       data-target="#" href="">
-        <div class="input-append"><input type="text" class="input-large" data-ng-model="endDate" placeholder="End date" style="color: #000000;"><span
-                class="add-on"><i
-                class="icon-calendar"></i></span>
+
+    <div class="row" style="float: left; display: flex">
+
+        <ul class="pager">
+            <li style="color: #000000;">
+                <span class="dropdown">
+                    <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown"
+                       data-target="#" href="">
+                        <div class="input-append"><input type="text" class="input-large"
+                                                         data-ng-model="startDate"
+                                                         style="color: #000000;" placeholder="Start date"><span
+                                class="add-on"><i
+                                class="icon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="startDate" data-format
+                                        data-on-set-time="setStartDate(startDate)"
+                                        data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select', startView:'day', minView:'day'  }"></datetimepicker>
+                    </ul>
+                </span>
+            </li>
+        </ul>
+
+        <ul class="pager">
+            <li style="color: #000000;">
+                <span class="dropdown">
+                    <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown"
+                       data-target="#" href="">
+                        <div class="input-append"><input type="text" class="input-large" data-ng-model="endDate"
+                                                         placeholder="End date"
+                                                         style="color: #000000;"><span
+                                class="add-on"><i
+                                class="icon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="endDate" data-format data-on-set-time="setEndDate(endDate)"
+                                        data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select', startView:'day', minView:'day' }"></datetimepicker>
+                    </ul>
+                </span>
+            </li>
+        </ul>
+
+        <div class="form-group">
+            <label for="selectCompany" class="col-lg-2 control-label">{{ 'Company'|translate }}</label>
+            <select class="form-control" id="selectCompany" ng-model="company"
+                    ng-options="sc.name for sc in companies track by sc.id ">
+
+            </select>
         </div>
-    </a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <datetimepicker data-ng-model="endDate" data-format data-on-set-time="setEndDate(endDate)"
-                        data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select', startView:'day', minView:'day' }"></datetimepicker>
-    </ul>
-</span>
-<span>
-    Period:
-     <input type="radio" ng-model="period"  value="YEAR"/>YEAR
-     <input type="radio" ng-model="period"  value="MONTH"/>MONTH
-     <input type="radio" ng-model="period"  value="WEEK"/>WEEK
-     <input type="radio" ng-model="period"  value="DAY" ng-checked="true"/>DAY
-</span>
-<br/>
+
+        <div class="form-group">
+            <label for="selectDepartment" class="col-lg-2 control-label">{{ 'Department'|translate }}</label>
+            <select class="form-control" id="selectDepartment" ng-model="department"
+                    ng-options="sc.name for sc in departments | filter: { companyId: company.id}">
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="selectProject" class="col-lg-2 control-label">{{ 'Project'|translate }}</label>
+            <select class="form-control" id="selectProject" ng-model="project" ng-options="sc.name for sc in projects | projectByCompanyFilter: company.departmentsDTO | filter: { departmentId: department.id} ">
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label for="selectProject" class="col-lg-2 control-label">Period</label>
+            <br/>
+            <div class="form-control">
+
+                <input type="radio" ng-model="period" value="MONTH"/>MONTH
+                <input type="radio" ng-model="period" value="WEEK"/>WEEK
+                <input type="radio" ng-model="period" value="DAY" ng-checked="true"/>DAY
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <div>
     <button class="btn btn-primary btn-sm" ng-click="applyFilters()">Apply</button>
 </div>
@@ -44,7 +91,7 @@
         <th style="text-align: center;">User FIO</th>
         <th style="text-align: center;" ng-repeat="(number,dates) in hoursOnDate[0].periodDTOs">
             {{dates.startDate| date:'yyyy-MM-dd'}}
-            <output  ng-show="dates.startDate != dates.endDate">- {{dates.endDate| date:'yyyy-MM-dd'}}</output>
+            <output ng-show="dates.startDate != dates.endDate">- {{dates.endDate| date:'yyyy-MM-dd'}}</output>
         </th>
 
     </tr>

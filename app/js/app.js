@@ -1,8 +1,9 @@
 'use strict';
 
-var app = angular.module('app', ['ngRoute', 'app.services', 'app.directives',"ui.bootstrap",'pascalprecht.translate','ui.bootstrap.datetimepicker']);
+var app = angular.module('app', ['ngRoute', 'app.services', 'app.directives','app.filters',"ui.bootstrap",'pascalprecht.translate','ui.bootstrap.datetimepicker']);
 var services = angular.module('app.services', ['ngResource']);
 var directives = angular.module('app.directives', ['ngResource']);
+var filters = angular.module('app.filters', []);
 
 app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
 

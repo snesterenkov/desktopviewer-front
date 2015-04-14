@@ -1,14 +1,10 @@
 services
-    .factory('workDiary', function (SERVER_URL, $http) {
+    .factory('workDiaryService', function (SERVER_URL, $http) {
         return {
-            getHoursByUserFromPeriod: function (period, startDate, endDate) {
-                return $http.get(SERVER_URL + '/report/workDiary',
+            getHoursByUserFromPeriod: function (projects,period, startDate, endDate) {
+                return $http.post(SERVER_URL + '/report/workDiary?period=' + period +'&startDate='+startDate+'&endDate='+endDate,
                     {
-                        params: {
-                            period: period,
-                            startDate: startDate,
-                            endDate: endDate
-                        }
+                        projectDTOs: projects
                     }
                 );
             }

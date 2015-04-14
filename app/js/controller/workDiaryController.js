@@ -1,8 +1,12 @@
 'use strict';
 
-app.controller('WorkDiaryController', [ '$scope', 'workDiary', function ($scope, workDiary) {
+app.controller('WorkDiaryController', [ '$scope', 'workDiaryService', 'companyService', function ($scope, workDiaryService, companyService) {
 
-    $scope.period = 'DAY';
+    var successGetCompanies  = function (result) {
+        $scope.companies = result.companiesDetailsDTO;
+        $scope.departments = result.departmentDetailsDTOs;
+        $scope.projects = result.projectDTOs;
+    };
 
     var successGetHoursByUserFromPeriod  = function (hoursOnDate) {
         $scope.hoursOnDate  = hoursOnDate;
@@ -17,19 +21,13 @@ app.controller('WorkDiaryController', [ '$scope', 'workDiary', function ($scope,
     }
 
     $scope.applyFilters = function(period) {
-        workDiary.getHoursByUserFromPeriod($scope.period, $scope.startDate, $scope.endDate).success(successGetHoursByUserFromPeriod);
+        var projectsFilter = [];
+        $scope.project != undefined ? projectsFilter.push($scope.project) : projectsFilter = $scope.projects;
+        workDiaryService.getHoursByUserFromPeriod(projectsFilter ,$scope.period, $scope.startDate, $scope.endDate).success(successGetHoursByUserFromPeriod);
     }
 
-    $scope.getPeriodEndDate =  function(date) {
-        if($scope.period == 'WEEK') {
-            return moment(new Date(date)).add(6, 'days').format('YYYY-MM-DD');
-        }
-        if($scope.period == 'MONTH') {
-            return moment(new Date(date)).add(29, 'days').format('YYYY-MM-DD');
-        }
-        if($scope.period == 'YEAR') {
-            return moment(new Date(date)).add(364, 'days').format('YYYY-MM-DD');
-        }
-    }
+    $scope.period = 'DAY';
+
+    companyService.companies().success(successGetCompanies);
 
 }]);
