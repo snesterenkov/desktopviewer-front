@@ -7,7 +7,7 @@ services
     .factory('user_projects', function(SERVER_URL, $http){
         return{
             getUserProjects: function(){
-                return $http.get(SERVER_URL + '/user_projects',{
+                return $http.get(SERVER_URL + '/personal/projects',{
                     params:{
                         client: window.localStorage.client
                     }

@@ -5,45 +5,53 @@
 
 app.controller('ProjectsCurrentUserController',['$scope','user_projects',function($scope, user_projects){
 
-    var getCompaniesList = function(projects){
-        var companies = {};
-        $scope.companiesList = [];
-        for(var i = 0; i< projects.length; i++){
-            companies[projects[i].companyDTO.name] = projects[i].companyDTO;
-        }
-        for(var k in companies){
-            $scope.companiesList.push( companies[k]);
+     function saveItems(items){
+        $scope.savedCompanies = items.companiesDTO.slice();
+        $scope.savedDepartments = items.departmentDTOs.slice();
+        $scope.savedProjects = items.projectDTOs.slice();
+    }
+
+    function prepareProjectsToView(){
+        $scope.userProjects = [];
+        for(var i = 0; i < $scope.savedProjects.length; i++){
+            var item = {};
+            item.project = $scope.savedProjects[i];
+            $scope.savedDepartments.forEach(function (value) {
+                if (value.id == item.project.departmentId) {
+                    item.department = value;
+                }
+            })
+            $scope.savedCompanies.forEach(function (value) {
+                if (value.id == item.department.companyId) {
+                    item.company = value;
+                }
+            })
+            $scope.userProjects.push(item);
         }
     }
 
-    $scope.cancelFilter= function(){
-        if(!$scope.companyItem)
-            $scope.companyItem = undefined;
-        if(!$scope.departmentItem)
-            $scope.departmentItem = "";
-    }
-
-    $scope.getDepartmentsList = function(companyid){
-        $scope.departmentItem = "";
-        var departments = {};
-        $scope.departmentsList = [];
-        for(var i = 0; i<$scope.userProjects.length; i++){
-            if($scope.userProjects[i].departmentDTO.companyid === companyid)
-                departments[$scope.userProjects[i].departmentDTO.id] = $scope.userProjects[i].departmentDTO.name;
+    $scope.filterProjects = function(){
+        $scope.filteredUserProjects = $scope.userProjects;
+        if($scope.companyItem){
+            $scope.filteredUserProjects = $scope.userProjects.filter(function(value){
+                return value.company.id == $scope.companyItem.id;
+            });
         }
-        for(var k in departments){
-            $scope.departmentsList.push(departments[k]);
+        if($scope.departmentItem){
+            $scope.filteredUserProjects = $scope.filteredUserProjects.filter(function(value){
+                return value.department.id == $scope.departmentItem.id;
+            });
         }
     }
 
     $scope.getProjects = function(){
-        var successProjects = function(projects){
-            $scope.userProjects = projects.sort();
-            getCompaniesList(projects);
+        var successProjects = function(items){
+            saveItems(items);
+            prepareProjectsToView();
+            $scope.filterProjects();
         }
         user_projects.getUserProjects().success(successProjects);
     };
 
-    $scope.departmentItem = "";
     $scope.getProjects();
 }]);
