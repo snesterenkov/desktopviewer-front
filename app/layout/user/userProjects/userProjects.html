@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <fieldset>
+            <legend>{{ 'Filters'|translate }}</legend>
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="selectCompany" class="control-label">{{ 'Company'|translate }}</label>
+                    <select class="form-control" id="selectCompany" ng-model="companyItem" ng-change="departmentItem = undefined;filterProjects()"
+                            ng-options="com.name for com in savedCompanies">
+                        <option value="">---------------------</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="selectDepartment" class="control-label">{{ 'Department'|translate }}</label>
+                    <select class="form-control" id="selectDepartment" ng-model="departmentItem" ng-change="filterProjects()"
+                            ng-options="dept.name for dept in savedDepartments | filter:{companyId:companyItem.id}">
+                        <option value="">---------------------</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <br/>
+    <div class="row">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>{{ 'Company'|translate }}</th>
+                    <th></th>
+                    <th>{{ 'Department'|translate }}</th>
+                    <th></th>
+                    <th>{{ 'Project'|translate }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in filteredUserProjects">
+                    <td>{{item.company.name}}</td>
+                    <td></td>
+                    <td>{{item.department.name}}</td>
+                    <td></td>
+                    <td>{{item.project.name}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
