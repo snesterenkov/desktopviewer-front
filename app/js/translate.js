@@ -5,9 +5,9 @@
 app.config(['$translateProvider', function ($translateProvider) {
     $translateProvider.translations('en', {
         'User': 'User',
-        'Department': 'Department',
-        'Company': 'Company',
-        'Project': 'Project',
+        'Department': 'Departments',
+        'Company': 'Companies',
+        'Project': 'Projects',
         'Registration': 'Registration',
         'Login': 'Login',
         'Sign in': 'Sign in',
@@ -22,9 +22,9 @@ app.config(['$translateProvider', function ($translateProvider) {
 
     $translateProvider.translations('ru', {
         'User': 'Пользователь',
-        'Department' : 'Подразделение',
-        'Company': 'Компания',
-        'Project': 'Проект',
+        'Department' : 'Подразделения',
+        'Company': 'Компании',
+        'Project': 'Проекты',
         'Registration': 'Регистрация',
         'Login': 'Логин',
         'Sign in': 'Войти',

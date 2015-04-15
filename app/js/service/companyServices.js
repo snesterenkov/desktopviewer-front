@@ -21,4 +21,12 @@ services
                 return $http.get(SERVER_URL + '/company/open');
             }
         };
-    });
+    })
+    .factory('companyService', function (SERVER_URL, $http) {
+        return {
+            companies: function (id, newStatus) {
+                return $http.get(SERVER_URL + '/company/companiesByOwnerAndRelatedProjects');
+            }
+        };
+    })
+;
