@@ -12,12 +12,25 @@ app.controller('WorkDiaryController', [ '$scope', 'workDiaryService', 'companySe
         $scope.hoursOnDate  = hoursOnDate;
     };
 
+    function checkEndDate(){
+        return $scope.startDate > $scope.endDate? $scope.startDate: $scope.endDate;
+    }
+
+    function limitDate(date){
+        var today = moment(new Date()).format('YYYY-MM-DD');
+        return date > today? today:date;
+    }
+
     $scope.setStartDate = function(startDate) {
         $scope.startDate = moment(new Date(startDate)).format('YYYY-MM-DD');
+        $scope.startDate = limitDate($scope.startDate);
+        $scope.endDate = checkEndDate();
     }
 
     $scope.setEndDate = function(endDate) {
         $scope.endDate = moment(new Date(endDate)).format('YYYY-MM-DD');
+        $scope.endDate = limitDate($scope.endDate);
+        $scope.endDate = checkEndDate();
     }
 
     $scope.applyFilters = function(period) {
