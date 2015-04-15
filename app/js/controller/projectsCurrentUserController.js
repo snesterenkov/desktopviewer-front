@@ -6,8 +6,8 @@
 app.controller('ProjectsCurrentUserController',['$scope','user_projects',function($scope, user_projects){
 
      function saveItems(items){
-        $scope.savedCompanies = items.companiesDTO.slice();
-        $scope.savedDepartments = items.departmentDTOs.slice();
+        $scope.savedCompanies = items.companiesDetailsDTO.slice();
+        $scope.savedDepartments = items.departmentDetailsDTOs.slice();
         $scope.savedProjects = items.projectDTOs.slice();
     }
 
