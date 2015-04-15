@@ -10,7 +10,7 @@ filters.filter('projectByCompanyFilter', ['$filter',function ($filter) {
                     data.push(item);
                 }
             });
-        });
+        })
         return data;
     };
 }]);

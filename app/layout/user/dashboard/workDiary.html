@@ -47,7 +47,7 @@
 
         <div class="form-group">
             <label for="selectCompany" class="col-lg-2 control-label">{{ 'Company'|translate }}</label>
-            <select class="form-control" id="selectCompany" ng-model="company"
+            <select class="form-control" id="selectCompany" ng-model="company" ng-click="department = undefined;"
                     ng-options="sc.name for sc in companies track by sc.id ">
 
             </select>
