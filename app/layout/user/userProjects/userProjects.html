@@ -40,40 +40,31 @@
                     <td>{{item.company.name}}</td>
                     <td ng-show="!item.isOwner"></td>
                     <td ng-show="item.isOwner">
-                        <button class="btn btn-primary btn-sm" ng-show="item.company.status =='OPEN'" ng-click="getProjectItemForUpdate(project)" data-toggle="modal"
-                                data-target="#editAndAddModal">Edit
+                        <button class="btn btn-success btn-sm" ng-show="item.company.status == 'PAUSED'" ng-click="changeCompanyStatus(item.company,'OPEN')"> Resume
                         </button>
-                        <button class="btn btn-success btn-sm" ng-show="item.company.status == 'PAUSED'" ng-click=""> Resume
+                        <button class="btn btn-info btn-sm" ng-show="item.company.status == 'OPEN'" ng-click="changeCompanyStatus(item.company,'PAUSED')"> Paused
                         </button>
-                        <button class="btn btn-info btn-sm" ng-show="item.company.status == 'OPEN'" ng-click=""> Paused
-                        </button>
-                        <button class="btn btn-warning btn-sm" ng-show="item.company.status !='CLOSED'" ng-click=""> Closed
+                        <button class="btn btn-warning btn-sm" ng-show="item.company.status !='CLOSED'" ng-click="changeCompanyStatus(item.company,'CLOSED')"> Closed
                         </button>
                     </td>
                     <td>{{item.department.name}}</td>
                     <td ng-show="!item.isOwner"></td>
                     <td ng-show="item.isOwner">
-                        <button class="btn btn-primary btn-sm" ng-show="item.department.status =='OPEN'" ng-click="getProjectItemForUpdate(project)" data-toggle="modal"
-                                data-target="#editAndAddModal">Edit
+                        <button class="btn btn-success btn-sm" ng-show="item.department.status == 'PAUSED' && item.department.parentStatus == 'OPEN'" ng-click="changeDepartmentStatus(item.department,'OPEN')"> Resume
                         </button>
-                        <button class="btn btn-success btn-sm" ng-show="item.department.status == 'PAUSED' && item.department.parentStatus == 'OPEN'" ng-click=""> Resume
+                        <button class="btn btn-info btn-sm" ng-show="item.department.status == 'OPEN' && item.department.parentStatus == 'OPEN'" ng-click="changeDepartmentStatus(item.department,'PAUSED')"> Paused
                         </button>
-                        <button class="btn btn-info btn-sm" ng-show="item.department.status == 'OPEN' && item.department.parentStatus == 'OPEN'" ng-click=""> Paused
-                        </button>
-                        <button class="btn btn-warning btn-sm" ng-show="item.department.status !='CLOSED' && item.department.parentStatus != 'CLOSED'" ng-click=""> Closed
+                        <button class="btn btn-warning btn-sm" ng-show="item.department.status !='CLOSED' && item.department.parentStatus != 'CLOSED'" ng-click="changeDepartmentStatus(item.department,'CLOSED')"> Closed
                         </button>
                     </td>
                     <td>{{item.project.name}}</td>
                     <td ng-show="!item.isOwner"></td>
                     <td ng-show="item.isOwner">
-                        <button class="btn btn-primary btn-sm" ng-show="item.project.status =='OPEN'" ng-click="getProjectItemForUpdate(project)" data-toggle="modal"
-                                data-target="#editAndAddModal">Edit
+                        <button class="btn btn-success btn-sm" ng-show="item.project.status == 'PAUSED' && item.project.parentStatus == 'OPEN'" ng-click="changeProjectStatus(item.project, 'OPEN')"> Resume
                         </button>
-                        <button class="btn btn-success btn-sm" ng-show="item.project.status == 'PAUSED' && item.project.parentStatus == 'OPEN'" ng-click=""> Resume
+                        <button class="btn btn-info btn-sm" ng-show="item.project.status == 'OPEN' && item.project.parentStatus == 'OPEN'" ng-click="changeProjectStatus(item.project,'PAUSED')"> Paused
                         </button>
-                        <button class="btn btn-info btn-sm" ng-show="item.project.status == 'OPEN' && item.project.parentStatus == 'OPEN'" ng-click=""> Paused
-                        </button>
-                        <button class="btn btn-warning btn-sm" ng-show="item.project.status !='CLOSED' && item.project.parentStatus != 'CLOSED'" ng-click=""> Closed
+                        <button class="btn btn-warning btn-sm" ng-show="item.project.status !='CLOSED' && item.project.parentStatus != 'CLOSED'" ng-click="changeProjectStatus(item.project,'CLOSED')"> Closed
                         </button>
                     </td>
                 </tr>

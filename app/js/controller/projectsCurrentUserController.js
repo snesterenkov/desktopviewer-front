@@ -3,9 +3,9 @@
  */
 'use strict';
 
-app.controller('ProjectsCurrentUserController',['$scope','user_projects',function($scope, user_projects){
+app.controller('ProjectsCurrentUserController',['$scope','user_projects','changeStatusProject','changeStatusDepartment','changeStatusCompany',function($scope, user_projects, changeStatusProject, changeStatusDepartment, changeStatusCompany){
 
-     function saveItems(items){
+    function saveItems(items){
         $scope.savedCompanies = items.companiesDetailsDTO.slice();
         $scope.savedDepartments = items.departmentDetailsDTOs.slice();
         $scope.savedProjects = items.projectDTOs.slice();
@@ -54,6 +54,27 @@ app.controller('ProjectsCurrentUserController',['$scope','user_projects',functio
         }
         user_projects.getUserProjects().success(successProjects);
     };
+
+    $scope.changeProjectStatus = function(project, newstatus){
+        var success = function (changedProject) {
+            $scope.getProjects();
+        };
+        changeStatusProject.changeToNewStatus(project.id,newstatus).success(success);
+    }
+
+    $scope.changeDepartmentStatus = function(department, newstatus){
+        var success = function(changedDepartment){
+            $scope.getProjects();
+        }
+        changeStatusDepartment.changeToNewStatus(department.id, newstatus).success(success);
+    }
+
+    $scope.changeCompanyStatus = function(company, newstatus){
+        var success = function(changedCompany){
+            $scope.getProjects();
+        }
+        changeStatusCompany.changeToNewStatus(company.id, newstatus).success(success);
+    }
 
     $scope.getProjects();
 }]);
