@@ -9,6 +9,7 @@ app.controller('ProjectsCurrentUserController',['$scope','user_projects',functio
         $scope.savedCompanies = items.companiesDetailsDTO.slice();
         $scope.savedDepartments = items.departmentDetailsDTOs.slice();
         $scope.savedProjects = items.projectDTOs.slice();
+        $scope.savedIsProjectOwner = items.isProjectOwner.slice();
     }
 
     function prepareProjectsToView(){
@@ -16,6 +17,7 @@ app.controller('ProjectsCurrentUserController',['$scope','user_projects',functio
         for(var i = 0; i < $scope.savedProjects.length; i++){
             var item = {};
             item.project = $scope.savedProjects[i];
+            item.isOwner = $scope.savedIsProjectOwner[i];
             $scope.savedDepartments.forEach(function (value) {
                 if (value.id == item.project.departmentId) {
                     item.department = value;

@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in filteredUserProjects">
+                <tr ng-repeat="item in filteredUserProjects" ng-class="item.isOwner? 'success':''">
                     <td>{{item.company.name}}</td>
                     <td></td>
                     <td>{{item.department.name}}</td>
