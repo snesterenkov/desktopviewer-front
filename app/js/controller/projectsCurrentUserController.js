@@ -3,7 +3,7 @@
  */
 'use strict';
 
-app.controller('ProjectsCurrentUserController',['$scope','user_projects','changeStatusProject','changeStatusDepartment','changeStatusCompany',function($scope, user_projects, changeStatusProject, changeStatusDepartment, changeStatusCompany){
+app.controller('ProjectsCurrentUserController',['$scope','projectTransfer','user_projects','changeStatusProject','changeStatusDepartment','changeStatusCompany',function($scope, projectTransfer,user_projects, changeStatusProject, changeStatusDepartment, changeStatusCompany){
 
     function saveItems(items){
         $scope.savedCompanies = items.companiesDetailsDTO.slice();
@@ -74,6 +74,10 @@ app.controller('ProjectsCurrentUserController',['$scope','user_projects','change
             $scope.getProjects();
         }
         changeStatusCompany.changeToNewStatus(company.id, newstatus).success(success);
+    }
+
+    $scope.sendUserProject = function(item){
+        projectTransfer.setUserProject(item.company, item.department, item.project);
     }
 
     $scope.getProjects();

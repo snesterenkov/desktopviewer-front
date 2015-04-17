@@ -47,25 +47,26 @@
 
         <div class="form-group">
             <label for="selectCompany" class="col-lg-2 control-label">{{ 'Company'|translate }}</label>
-            <select class="form-control" id="selectCompany" ng-model="company" ng-click="department = undefined;"
-                    ng-options="sc.name for sc in companies track by sc.id ">
-
+            <select class="form-control" id="selectCompany" ng-model="company" ng-change="department = {};project = {}"
+                    ng-options="comp.name for comp in companies track by comp.id ">
+                <option value="">--------------------</option>
             </select>
         </div>
 
         <div class="form-group">
             <label for="selectDepartment" class="col-lg-2 control-label">{{ 'Department'|translate }}</label>
-            <select class="form-control" id="selectDepartment" ng-model="department"
-                    ng-options="sc.name for sc in departments | filter: { companyId: company.id}">
-
+            <select class="form-control" id="selectDepartment" ng-model="department" ng-change="project = {};"
+                    ng-options="dept.name for dept in (departments | filter:{companyId: company.id} ) track by dept.id">
+                <option value="">--------------------</option>
             </select>
         </div>
 
         <div class="form-group">
             <label for="selectProject" class="col-lg-2 control-label">{{ 'Project'|translate }}</label>
-            <select class="form-control" id="selectProject" ng-model="project" ng-options="sc.name for sc in projects | projectByCompanyFilter: company.departmentsDTO | filter: { departmentId: department.id} ">
+            <select class="form-control" id="selectProject" ng-model="project"
+                    ng-options="proj.name for proj in (projects| projectByCompanyFilter: company.departmentsDTO | filter: { departmentId: department.id}) track by proj.id ">
+                <option value="">--------------------</option>
             </select>
-
         </div>
         <div class="form-group">
             <label for="selectProject" class="col-lg-2 control-label">Period</label>

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('WorkDiaryController', [ '$scope', 'workDiaryService', 'companyService', function ($scope, workDiaryService, companyService) {
+app.controller('WorkDiaryController', [ '$scope', 'projectTransfer', 'workDiaryService', 'companyService', function ($scope, projectTransfer,workDiaryService, companyService) {
 
     var successGetCompanies  = function (result) {
         $scope.companies = result.companiesDetailsDTO;
@@ -39,8 +39,15 @@ app.controller('WorkDiaryController', [ '$scope', 'workDiaryService', 'companySe
         workDiaryService.getHoursByUserFromPeriod(projectsFilter ,$scope.period, $scope.startDate, $scope.endDate).success(successGetHoursByUserFromPeriod);
     }
 
+    $scope.checkProject = function(){
+        $scope.company = projectTransfer.company;
+        $scope.department = projectTransfer.department;
+        $scope.project = projectTransfer.project;
+    }
+
     $scope.period = 'DAY';
 
     companyService.companies().success(successGetCompanies);
+    $scope.checkProject();
 
 }]);
