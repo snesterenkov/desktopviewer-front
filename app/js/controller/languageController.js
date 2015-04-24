@@ -1,6 +1,6 @@
 'use strict';
 
-var LanguageController = function($scope,$translate) {
+app.controller( 'LanguageController',['$scope','$translate', function($scope,$translate) {
     $scope.languages = [
         { name: 'ru'},
         { name: 'en'}
@@ -11,4 +11,4 @@ var LanguageController = function($scope,$translate) {
     $scope.changeLanguageListener = function() {
         $translate.use($scope.selectedLanguage.name);
     };
-};
+}]);
