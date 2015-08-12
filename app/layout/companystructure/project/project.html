@@ -32,7 +32,14 @@
             </button>
             <button class="btn btn-warning btn-sm" ng-show="project.status !='CLOSED' && project.parentStatus != 'CLOSED'" ng-click="changeStatusProjectController(project.id,'CLOSED')"> Closed
             </button>
+            <button class="btn btn-success btn-sm" ng-click="editProjectMembers(project)" data-toggle="modal" data-target="#editAndAddMembers">Members</button>
         </td>
     </tr>
     </tbody>
 </table>
+<br/>
+<br/>
+
+<div class="modal fade" ng-include="'layout/companystructure/project/editAndAddMembersToProject.html'"
+     id="editAndAddMembers" role="dialog" data-hidden="true">
+</div>
