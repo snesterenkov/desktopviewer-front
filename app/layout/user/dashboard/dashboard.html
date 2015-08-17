@@ -1,15 +1,17 @@
-<div>
+<div style="padding-bottom:35px; min-height: 600px; margin: 0 auto; width:  960px;">
     <ul class="pager">
         <li><a class="btn" href="#dashboard" ng-click="goToPreviousDate(date)">Previous</a></li>
         <li style="color: #000000;">
             <span class="dropdown">
-                <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                    <div class="input-append"><input type="text" class="input-large" data-ng-model="date" ><span class="add-on"><i
+                <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown"
+                   data-target="#" href="">
+                    <div class="input-append"><input type="text" class="input-large" data-ng-model="date"><span
+                            class="add-on"><i
                             class="icon-calendar"></i></span>
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker  data-ng-model="date" data-format  data-on-set-time="goToSelectedDate(date)"
+                    <datetimepicker data-ng-model="date" data-format data-on-set-time="goToSelectedDate(date)"
                                     data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
                 </ul>
             </span>
@@ -17,28 +19,51 @@
         <li><a class="btn" href="#dashboard" ng-disabled="isMoreOrEqualThanCurrentDate()"
                ng-click="goToNextDate(date)">Next</a></li>
     </ul>
-    <span ng-repeat="snapshot in snapshotsUser">
-       <span class="col-md-2">
-           <div>
-               <label class="control-label label-success">{{snapshot.message}}</label>
-           </div>
-           <div>
-               <a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}" class="nav"
-                       >
-                   <img src="data:image/jpg;base64,{{snapshot.file}}" class="img-responsive"width="300px">
-               </a>
-           </div>
-           <br/>
-           <label class="control-label" style="float: left;">{{snapshot.time}}&nbsp</label>
 
-           <div class="progress progress-striped">
-               <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100"
-                        style="width: {{snapshot.userActivityPercent}}%;">
-                       <span style="color: #000000;">{{snapshot.userActivityPercent}}%</span>
-               </div>
-           </div>
-       </span>
-    </span>
+
+    <table style="display: table-cell;">
+        <tbody ng-repeat="snapshots in snapshotsUser track by $index">
+        <tr ng-show="snapshots.length > 1">
+            <td ng-repeat="snapshot in snapshots track by $index" rowspan="2" ng-show="$index == 0"
+                style="width: 35px; background: #f2f2f0">
+                <label class="control-label">{{convertTime(snapshot.order)}}</label>
+            </td>
+            <td style="height: 21px" ng-repeat="snapshot in snapshots track by $index" colspan="6"
+                ng-show="$index != 0">
+                <label class="control-label label-success">{{snapshot.message}}</label>
+            </td>
+        </tr>
+        <tr ng-show="snapshots.length > 1">
+            <td ng-repeat="snapshot in snapshots track by $index" ng-show="$index != 0">
+                <div ng-if="snapshot.file == undefined" style="border: 1px dashed #d2d6de">
+                    <a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}" class="nav"
+                            >
+                        <img style="width: 150px; height: 100px; padding: 1px;" src="data:image/jpg;base64,{{snapshot.file}}"
+                             class="img-responsive">
+                    </a>
+                </div>
+                <div ng-if="snapshot.file != undefined">
+                    <a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}" class="nav"
+                            >
+                        <img style="width: 150px; height: 100px; padding: 1px;" src="data:image/jpg;base64,{{snapshot.file}}"
+                             class="img-responsive">
+                    </a>
+                </div>
+                <div>
+                    <label class="control-label" style="float: left; height: 14px;">{{snapshot.time}}&nbsp</label>
+
+                    <div class="progress progress-striped" style="height: 21px">
+                        <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100"
+                             style="width: {{snapshot.userActivityPercent}}%;">
+                            <span style="color: #000000;"></span>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
 
     <div class="modal fade" ng-include="'layout/snapshot/snapshotModal.html'" id="snapshotModal" role="dialog"
          aria-hidden="true"></div>

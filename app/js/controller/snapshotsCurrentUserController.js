@@ -6,7 +6,22 @@ app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '
     var url = '/user/authorized';
 
     var successSnapshotsByUser = function (snapshotsUser) {
-        $scope.snapshotsUser = snapshotsUser;
+        var count = 1;
+        var snapshotsUserOnSix = new Array();
+        var times = new Array();
+        snapshotsUserOnSix[0] = new Array();
+
+        for (var i = 0; i < 25; i++) {
+            snapshotsUserOnSix[i] = new Array();
+            snapshotsUserOnSix[i][0] = {order : i};
+        }
+
+        for (var key in snapshotsUser)
+        {
+            snapshotsUserOnSix[(new Date(snapshotsUser[key].date +" "+ snapshotsUser[key].time)).getHours()][Math.floor((new Date(snapshotsUser[key].date  + " " + snapshotsUser[key].time)).getMinutes()/10)+1] = snapshotsUser[key];
+        }
+        $scope.snapshotsUser = snapshotsUserOnSix;
+        $scope.times = times;
     };
 
     var successLogin = function (user) {
@@ -32,6 +47,10 @@ app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '
 
     $scope.isMoreOrEqualThanCurrentDate = function() {
         return moment().format('YYYY-MM-DD') ==  moment(new Date($scope.date)).format('YYYY-MM-DD');
+    }
+
+    $scope.convertTime = function(time) {
+        return time + ":00";
     }
 
     authorization.login(url,window.localStorage.client).success(successLogin);
