@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('ProjectController', ['$injector', '$scope', 'Project', 'changeStatusProject', 'openDepartment', function($injector, $scope, Project, changeStatusProject, openDepartment) {
+app.controller('ProjectController', ['$injector', '$scope', 'Project', 'freeUsers', 'changeStatusProject', 'openDepartment', function($injector, $scope, Project, freeUsers, changeStatusProject, openDepartment) {
 
     $injector.invoke(BaseController, this, {
         $scope: $scope,
@@ -23,6 +23,16 @@ app.controller('ProjectController', ['$injector', '$scope', 'Project', 'changeSt
         openDepartment.openDepartment().success(successOpenDepartment);
     };
 
+    $scope.editProjectMembers = function(project){
+        $scope.selectedProject = project;
+        var successFindFreeUsers = function (users) {
+            console.log('get users');
+            $scope.freeUsers = users;
+        };
+        console.log('start get free users');
+        freeUsers.getFreeUsers(project.id).success(successFindFreeUsers);
+    }
+
     $scope.getProjectItemForUpdate = function(item){
         $scope.getItemForUpdate(item);
         var successOpenDepartment = function (departments) {
@@ -30,4 +40,6 @@ app.controller('ProjectController', ['$injector', '$scope', 'Project', 'changeSt
         };
         openDepartment.openDepartment().success(successOpenDepartment);
     }
+
+    $scope.selectedProject = {};
 }]);

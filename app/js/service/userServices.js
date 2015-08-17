@@ -15,4 +15,15 @@ services
                 method: 'PUT'
             }
         });
+    })
+    .factory('freeUsers', function($rootScope, SERVER_URL, $http){
+        return {
+            getFreeUsers: function(projectId){
+                return $http.get(SERVER_URL + '/user/free',{
+                    params:{
+                        projectid: projectId
+                    }
+                });
+            }
+        };
     });

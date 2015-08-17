@@ -18,4 +18,9 @@ body {
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
+div.scroll-table{
+    overflow: auto;
+    height: 450px;
+}
+
 
