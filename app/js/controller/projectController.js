@@ -26,11 +26,13 @@ app.controller('ProjectController', ['$injector', '$scope', 'Project', 'freeUser
     $scope.editProjectMembers = function(project){
         $scope.selectedProject = project;
         var successFindFreeUsers = function (users) {
-            console.log('get users');
             $scope.freeUsers = users;
         };
-        console.log('start get free users');
         freeUsers.getFreeUsers(project.id).success(successFindFreeUsers);
+    }
+
+    $scope.clearAddList = function(){
+        $scope.usersForAdd = {};
     }
 
     $scope.getProjectItemForUpdate = function(item){
@@ -41,5 +43,19 @@ app.controller('ProjectController', ['$injector', '$scope', 'Project', 'freeUser
         openDepartment.openDepartment().success(successOpenDepartment);
     }
 
+    $scope.addUserToAddList = function(user){
+        if($scope.usersForAdd[user.id]){
+            delete $scope.usersForAdd[user.id];
+        } else{
+            $scope.usersForAdd[user.id] = user;
+        }
+    }
+
+    $scope.addUsersToProject = function(){
+        $scope.clearAddList();
+    }
+
     $scope.selectedProject = {};
+    $scope.usersForAdd = {};
+    $scope.usersForDelete = {};
 }]);
