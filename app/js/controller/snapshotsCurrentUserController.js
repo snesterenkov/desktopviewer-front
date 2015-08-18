@@ -11,14 +11,19 @@ app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '
         var times = new Array();
         snapshotsUserOnSix[0] = new Array();
 
-        for (var i = 0; i < 25; i++) {
+        for (var i = 24; i >= 0; i--) {
             snapshotsUserOnSix[i] = new Array();
             snapshotsUserOnSix[i][0] = {order : i};
         }
 
         for (var key in snapshotsUser)
         {
-            snapshotsUserOnSix[(new Date(snapshotsUser[key].date +" "+ snapshotsUser[key].time)).getHours()][Math.floor((new Date(snapshotsUser[key].date  + " " + snapshotsUser[key].time)).getMinutes()/10)+1] = snapshotsUser[key];
+            var res = snapshotsUser[key].time.split(":");
+            var hours = parseInt(res[0]);
+            //+1 the first column is order
+            var minutes = Math.floor(res[1]/10) + 1;
+            if(!isNaN(hours) && !isNaN(minutes))
+                snapshotsUserOnSix[hours][minutes] = snapshotsUser[key];
         }
         $scope.snapshotsUser = snapshotsUserOnSix;
         $scope.times = times;
