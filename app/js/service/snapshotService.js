@@ -17,4 +17,17 @@ services
                 );
             }
         };
+    }).
+    factory('countSnapshotsByUserOnDay', function ($rootScope, SERVER_URL, $http) {
+        return {
+            countSnapshotsByUserOnDay: function (id, date) {
+                return $http.get(SERVER_URL + '/snapshot/user/snapshots/month/' + id,
+                    {
+                        params: {
+                            date: date
+                        }
+                    }
+                );
+            }
+        };
     });

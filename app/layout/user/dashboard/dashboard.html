@@ -1,24 +1,25 @@
 <div style="padding-bottom:35px; min-height: 600px; margin: 0 auto; width:  960px;">
-    <ul class="pager">
-        <li><a class="btn" href="#dashboard" ng-click="goToPreviousDate(date)">Previous</a></li>
-        <li style="color: #000000;">
-            <span class="dropdown">
-                <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown"
-                   data-target="#" href="">
-                    <div class="input-append"><input type="text" class="input-large" data-ng-model="date"><span
-                            class="add-on"><i
-                            class="icon-calendar"></i></span>
+
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-7'>
+                        <a class="btn" href="#dashboard" ng-click="goToPreviousDate(date)" style="padding-left: 150px;">Previous</a>
+                        <input type='text' class="form-control" id='datetimepicker' ng-model="date"
+                               picker style="display: inline-block; vertical-align:top; width: 50%"/>
+                        <a class="btn" href="#dashboard" ng-disabled="isMoreOrEqualThanCurrentDate()"
+                           ng-click="goToNextDate(date)" >Next</a>
                     </div>
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="date" data-format data-on-set-time="goToSelectedDate(date)"
-                                    data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select' }"></datetimepicker>
-                </ul>
-            </span>
-        </li>
-        <li><a class="btn" href="#dashboard" ng-disabled="isMoreOrEqualThanCurrentDate()"
-               ng-click="goToNextDate(date)">Next</a></li>
-    </ul>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker').datetimepicker({
+                                locale: 'ru',
+                                format: 'YYYY-MM-DD'
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+
 
 
     <table style="display: table-cell;">

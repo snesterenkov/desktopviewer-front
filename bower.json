@@ -21,7 +21,7 @@
     "angular-bootstrap": "latest",
     "angular-translate": "latest",
     "moment": "~2.9.0",
-    "angular-bootstrap-datetimepicker": "https://github.com/dalelotts/angular-bootstrap-datetimepicker.git"
+    "eonasdan-bootstrap-datetimepicker": "latest"
   },
   "resolutions": {
     "angular": "1.4.3"
