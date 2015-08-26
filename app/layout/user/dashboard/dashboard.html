@@ -1,71 +1,69 @@
-<div style="padding-bottom:35px; min-height: 600px; margin: 0 auto; width:  960px;">
+<div>
 
-            <div class="container">
-                <div class="row">
-                    <div class='col-sm-7'>
-                        <a class="btn" href="#dashboard" ng-click="goToPreviousDate(date)" style="padding-left: 150px;">Previous</a>
-                        <input type='text' class="form-control" id='datetimepicker' ng-model="date"
-                               picker style="display: inline-block; vertical-align:top; width: 50%"/>
-                        <a class="btn" href="#dashboard" ng-disabled="isMoreOrEqualThanCurrentDate()"
-                           ng-click="goToNextDate(date)" >Next</a>
-                    </div>
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#datetimepicker').datetimepicker({
-                                locale: 'ru',
-                                format: 'YYYY-MM-DD'
-                            });
-                        });
-                    </script>
-                </div>
+    <div class="container" style="width: 100%!important; text-align: center">
+        <div class="row">
+            <div>
+                <a class="btn" href="#dashboard" ng-click="goToPreviousDate(date)"
+                        ><</a>
+                <input type='text' class="form-control" id='datetimepicker' ng-model="date"
+                       picker
+                       style="display: inline-block; width: 194px; height: 30px; text-align: center !important;"/>
+                <a class="btn" href="#dashboard" ng-disabled="isMoreOrEqualThanCurrentDate()"
+                   ng-click="goToNextDate(date)">></a>
             </div>
+            <script type="text/javascript">
+                $(function () {
+                    $('#datetimepicker').datetimepicker({
+                        locale: 'ru',
+                        format: 'YYYY-MM-DD'
+                    });
+                });
+            </script>
+        </div>
+    </div>
 
 
+    <div>
+        <table style="table-layout:inherit;width: 100%">
+            <tbody ng-repeat="snapshots in snapshotsUser track by $index">
+            <tr ng-show="snapshots.length > 1">
+                <td ng-repeat="snapshot in snapshots track by $index" rowspan="2" ng-show="$index == 0"
+                    style="width: 19px; height: 139px; background: #f2f2f0">
+                    <label class="control-label">{{convertTime(snapshot.order)}}</label>
+                </td>
+                <td style="height: 21px" ng-repeat="snapshot in snapshots track by $index" colspan="6"
+                    ng-show="$index != 0">
+                    <label class="control-label label-success">{{snapshot.message}}</label>
+                </td>
+            </tr>
+            <tr ng-show="snapshots.length > 1">
+                <td ng-repeat="snapshot in snapshots track by $index" ng-show="$index != 0">
+                    <div ng-if="snapshot.file == undefined" style="border: 1px dashed #d2d6de;idth: 150px; height: 100px; padding: 1px;">
+                    </div>
+                    <div ng-if="snapshot.file != undefined">
+                        <a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}" class="nav"
+                                >
+                            <img style="width: 150px; height: 100px; padding: 1px;"
+                                 src="data:image/jpg;base64,{{snapshot.file}}"
+                                 class="img-responsive">
+                        </a>
+                    </div>
+                    <div style="height: 21px;width: 150px;">
+                        <label class="control-label" style="float: left; height: 14px;">{{snapshot.time}}&nbsp</label>
 
-    <table style="display: table-cell;">
-        <tbody ng-repeat="snapshots in snapshotsUser track by $index">
-        <tr ng-show="snapshots.length > 1">
-            <td ng-repeat="snapshot in snapshots track by $index" rowspan="2" ng-show="$index == 0"
-                style="width: 35px; background: #f2f2f0">
-                <label class="control-label">{{convertTime(snapshot.order)}}</label>
-            </td>
-            <td style="height: 21px" ng-repeat="snapshot in snapshots track by $index" colspan="6"
-                ng-show="$index != 0">
-                <label class="control-label label-success">{{snapshot.message}}</label>
-            </td>
-        </tr>
-        <tr ng-show="snapshots.length > 1">
-            <td ng-repeat="snapshot in snapshots track by $index" ng-show="$index != 0">
-                <div ng-if="snapshot.file == undefined" style="border: 1px dashed #d2d6de">
-                    <a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}" class="nav"
-                            >
-                        <img style="width: 150px; height: 100px; padding: 1px;" src="data:image/jpg;base64,{{snapshot.file}}"
-                             class="img-responsive">
-                    </a>
-                </div>
-                <div ng-if="snapshot.file != undefined">
-                    <a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}" class="nav"
-                            >
-                        <img style="width: 150px; height: 100px; padding: 1px;" src="data:image/jpg;base64,{{snapshot.file}}"
-                             class="img-responsive">
-                    </a>
-                </div>
-                <div>
-                    <label class="control-label" style="float: left; height: 14px;">{{snapshot.time}}&nbsp</label>
-
-                    <div class="progress progress-striped" style="height: 21px">
-                        <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100"
-                             style="width: {{snapshot.userActivityPercent}}%;">
-                            <span style="color: #000000;"></span>
+                        <div class="progress progress-striped">
+                            <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100"
+                                 style="width: {{snapshot.userActivityPercent}}%;">
+                                <span style="color: #000000;"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-
+    </div>
     <div class="modal fade" ng-include="'layout/snapshot/snapshotModal.html'" id="snapshotModal" role="dialog"
          aria-hidden="true"></div>
 </div>

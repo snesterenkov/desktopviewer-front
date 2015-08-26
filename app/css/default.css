@@ -18,9 +18,23 @@ body {
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-div.scroll-table{
+div.scroll-table {
     overflow: auto;
     height: 450px;
+}
+
+.dropdown .open {
+    padding: 29px 10px 10px 29px;
+    width: 12px;
+    height: 78px;
+}
+
+
+.pageCentered {
+    margin: 0 auto;
+    position: relative;
+    width: 960px;
+    padding-top: 20px;
 }
 
 

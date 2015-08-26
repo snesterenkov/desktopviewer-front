@@ -11,9 +11,14 @@ app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '
         var times = new Array();
         snapshotsUserOnSix[0] = new Array();
 
-        for (var i = 24; i >= 0; i--) {
+        for (var i = 23; i >= 0; i--) {
             snapshotsUserOnSix[i] = new Array();
             snapshotsUserOnSix[i][0] = {order : i};
+        }
+
+        for (var i = 23; i >= 0; i--) {
+            for (var j = 6; j > 1; j--)
+                snapshotsUserOnSix[i][j] = "";
         }
 
         for (var key in snapshotsUser)
@@ -25,7 +30,10 @@ app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '
             if(!isNaN(hours) && !isNaN(minutes))
                 snapshotsUserOnSix[hours][minutes] = snapshotsUser[key];
         }
+
+
         $scope.snapshotsUser = snapshotsUserOnSix;
+        $scope.snapshotsUserForCarousel = snapshotsUser;
         $scope.times = times;
     };
 
