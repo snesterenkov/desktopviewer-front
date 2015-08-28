@@ -17,6 +17,13 @@ services
                 );
             }
         };
+    })
+    .factory('snapshot', function ($rootScope, SERVER_URL, $http) {
+        return {
+            snapshotById: function (id) {
+                return $http.get(SERVER_URL + '/snapshot/' + id);
+            }
+        };
     }).
     factory('countSnapshotsByUserOnDay', function ($rootScope, SERVER_URL, $http) {
         return {

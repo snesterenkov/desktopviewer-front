@@ -1,5 +1,4 @@
-<div>
-
+<div style="padding-top: 20px;">
     <div class="container" style="width: 100%!important; text-align: center">
         <div class="row">
             <div>
@@ -22,7 +21,6 @@
         </div>
     </div>
 
-
     <div>
         <table style="table-layout:inherit;width: 100%">
             <tbody ng-repeat="snapshots in snapshotsUser track by $index">
@@ -41,12 +39,22 @@
                     <div ng-if="snapshot.file == undefined" style="border: 1px dashed #d2d6de;idth: 150px; height: 100px; padding: 1px;">
                     </div>
                     <div ng-if="snapshot.file != undefined">
-                        <a data-toggle="modal" data-target="#snapshotModal" title="{{snapshot.note}}" class="nav"
-                                >
+
                             <img style="width: 150px; height: 100px; padding: 1px;"
                                  src="data:image/jpg;base64,{{snapshot.file}}"
-                                 class="img-responsive">
-                        </a>
+                                 class="img-responsive"  snapshot="snapshot.file"
+                                 message="snapshot.message"
+                                 time="snapshot.time"
+                                 percent="snapshot.userActivityPercent"
+                                 note="snapshot.note"
+                                 custom-popover popover-placement="right">
+                        <script>
+                            $(function () {
+                                $("[data-toggle='tooltip']").tooltip();
+                                $("[data-toggle='popover']").popover();
+                            });
+                        </script>
+
                     </div>
                     <div style="height: 21px;width: 150px;">
                         <label class="control-label" style="float: left; height: 14px;">{{snapshot.time}}&nbsp</label>

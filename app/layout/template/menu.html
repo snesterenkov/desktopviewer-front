@@ -1,24 +1,39 @@
 <div class="container">
     <div class="navbar navbar-fixed-top navbar-default">
-        <div class="navbar-collapse collapse navbar-responsive-collapse" >
-            <ul class="nav navbar-nav" ng-show="isLoggedIn" style="height: 70px; width: 1903px;  padding-left: 464px; padding-top: 10px;">
-                <li class="dropdown open">
-                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Reports <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#/dashboard">Snapshots</a></li>
-                        <li><a href="#/workDiary">Work diary</a></li>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <nav class="pageCentered">
+                <ul class="nav navbar-nav" ng-show="isLoggedIn"
+                    style="height: 60px; width: 1903px; margin: 0 auto;">
+                    <li class="dropdown open">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Reports
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#/dashboard">Snapshots</a></li>
+                            <li><a href="#/workDiary">Work diary</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#/userProjects">{{ 'MyProjects' | translate }}</a></li>
+                    <li><a href="#/user">{{ 'User' | translate }}</a></li>
+                    <li><a href="#/department">{{ 'Department' | translate }}</a></li>
+                    <li><a href="#/company">{{ 'Company' | translate }}</a></li>
+                    <li><a href="#/project">{{ 'Project' | translate }}</a></li>
+                </ul>
+                <div style="position: absolute; right:0;">
+                    <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn">
+                        <li><a data-toggle="modal" data-target="#editModal">{{authorizedUser}}</a></li>
+                        <li><a href="#/login" ng-click="logout()">{{ 'Sign out' | translate }}</a></li>
+                        <li>
+                            <select ng-controller="LanguageController" name="language" ng-model="selectedLanguage"
+                                    ng-options="language.name for language in languages track by language.name"
+                                    ng-change="changeLanguageListener()" class="form-control">
+                            </select>
+                        </li>
                     </ul>
-                </li>
-                <li><a href="#/userProjects">{{ 'MyProjects' | translate }}</a></li>
-                <li><a href="#/user">{{ 'User' | translate }}</a></li>
-                <li><a href="#/department">{{ 'Department' | translate }}</a></li>
-                <li><a href="#/company">{{ 'Company' | translate }}</a></li>
-                <li><a href="#/project">{{ 'Project' | translate }}</a></li>
-            </ul>
-            <div style="position: absolute;right: 500px; padding-top: 10px;">
-                <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn">
-                    <li><a data-toggle="modal" data-target="#editModal">{{authorizedUser}}</a></li>
-                    <li><a href="#/login" ng-click="logout()">{{ 'Sign out' | translate }}</a></li>
+
+                </div>
+                <ul class="nav navbar-nav navbar-right" ng-show="!isLoggedIn">
+                    <li><a href="#/registration">{{ 'Registration' | translate }}</a></li>
+                    <li><a href="#/login">{{ 'Sign in' | translate }}</a></li>
                     <li>
                         <select ng-controller="LanguageController" name="language" ng-model="selectedLanguage"
                                 ng-options="language.name for language in languages track by language.name"
@@ -26,19 +41,7 @@
                         </select>
                     </li>
                 </ul>
-
-            </div>
-            <ul class="nav navbar-nav navbar-right" ng-show="!isLoggedIn">
-                <li><a href="#/registration">{{ 'Registration' | translate }}</a></li>
-                <li><a href="#/login">{{ 'Sign in' | translate }}</a></li>
-                <li>
-                    <select ng-controller="LanguageController" name="language" ng-model="selectedLanguage"
-                            ng-options="language.name for language in languages track by language.name"
-                            ng-change="changeLanguageListener()" class="form-control">
-                    </select>
-                </li>
-            </ul>
-
+            </nav>
         </div>
     </div>
 </div>

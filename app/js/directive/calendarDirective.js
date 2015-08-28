@@ -15,12 +15,6 @@ directives.directive('picker', function () {
                     scope.goToSelectedDate(date);
                 });
             });
-            element.on('dp.change', function (event) {
-                scope.$apply(function () {
-                    var date = picker.date();
-                    scope.goToSelectedDate(date);
-                });
-            });
         }
     };
 });
