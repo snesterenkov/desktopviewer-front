@@ -22,6 +22,9 @@
     </div>
 
     <div>
+        <div>
+            <label class="control-label label-success" style="font-family: Gotham Book,sans-serif;">Total time logged: {{totalHours}}:{{totalMinutes}}</label>
+        </div>
         <table style="table-layout:inherit;width: 100%">
             <tbody ng-repeat="snapshots in snapshotsUser track by $index">
             <tr ng-show="snapshots.length > 1">
@@ -36,18 +39,20 @@
             </tr>
             <tr ng-show="snapshots.length > 1">
                 <td ng-repeat="snapshot in snapshots track by $index" ng-show="$index != 0">
-                    <div ng-if="snapshot.file == undefined" style="border: 1px dashed #d2d6de;idth: 150px; height: 100px; padding: 1px;">
+                    <div ng-if="snapshot.file == undefined"
+                         style="border: 1px dashed #d2d6de;idth: 150px; height: 100px; padding: 1px;">
                     </div>
                     <div ng-if="snapshot.file != undefined">
 
-                            <img style="width: 150px; height: 100px; padding: 1px;"
-                                 src="data:image/jpg;base64,{{snapshot.file}}"
-                                 class="img-responsive"  snapshot="snapshot.file"
-                                 message="snapshot.message"
-                                 time="snapshot.time"
-                                 percent="snapshot.userActivityPercent"
-                                 note="snapshot.note"
-                                 custom-popover popover-placement="right">
+                        <img style="width: 150px; height: 100px; padding: 1px;"
+                             ng-src="data:image/jpg;base64,{{snapshot.file}}"
+                             ng-click="getFullImageSrc(snapshot.id)"
+                             class="img-responsive" snapshot="snapshot.file"
+                             message="snapshot.message"
+                             time="snapshot.time"
+                             percent="snapshot.userActivityPercent"
+                             note="snapshot.note"
+                             custom-popover popover-placement="right">
                         <script>
                             $(function () {
                                 $("[data-toggle='tooltip']").tooltip();

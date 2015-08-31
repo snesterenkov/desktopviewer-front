@@ -6,7 +6,7 @@
     <br/>
     <div style="height: 320px; width: 400px">
         <carousel>
-            <slide ng-repeat="snapshot in snapshotsUser" active="snapshot.active">
+            <slide ng-repeat="snapshot in snapshotsUserForCarousel track by $index" active="snapshot.active">
                 <img ng-src="data:image/jpg;base64,{{snapshot.file}}" style="height: 320px; width: 400px">
                 <div class="carousel-caption" style="color: #000000">
                     <p>Note:{{snapshot.note}}</p>

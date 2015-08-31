@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '$scope', 'authorization', function($routeParams, snapshots, $scope, authorization) {
+app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '$scope', 'snapshot', 'authorization', function($routeParams, snapshots, $scope, snapshot, authorization) {
     var userId;
     var user;
     var url = '/user/authorized';
@@ -9,6 +9,7 @@ app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '
         var count = 1;
         var snapshotsUserOnSix = new Array();
         var times = new Array();
+        var totalTime = 0;
         snapshotsUserOnSix[0] = new Array();
 
         for (var i = 23; i >= 0; i--) {
@@ -31,11 +32,21 @@ app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '
                 snapshotsUserOnSix[hours][minutes] = snapshotsUser[key];
         }
 
-
+        totalTime = 10 * snapshotsUser.length;
         $scope.snapshotsUser = snapshotsUserOnSix;
         $scope.snapshotsUserForCarousel = snapshotsUser;
         $scope.times = times;
+        $scope.totalHours = Math.floor(totalTime / 60);
+        $scope.totalMinutes = totalTime - $scope.totalHours * 60;
     };
+
+    $scope.getFullImageSrc = function (snapshotId) {
+        snapshot.snapshotById(snapshotId).success(successSnapshot);
+    }
+
+    var successSnapshot = function (result) {
+        window.open("data:image/jpg;base64," + result.contentFile);
+    }
 
     var successLogin = function (user) {
         userId = user.id;
@@ -67,5 +78,7 @@ app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '
     }
 
     authorization.login(url,window.localStorage.client).success(successLogin);
+
+
 
 }])

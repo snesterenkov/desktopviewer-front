@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <span ng-repeat="snapshot in snapshotsUser">
+    <span ng-repeat="snapshot in snapshotsUserForCarousel track by $index">
        <span class="col-md-2">
            <div>
                 <label class="control-label label-success">{{snapshot.message}}</label>
