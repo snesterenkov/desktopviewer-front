@@ -23,14 +23,14 @@
 
     <div>
         <div>
-            <label class="control-label label-success" style="font-family: Gotham Book,sans-serif;">Total time logged: {{totalHours}}:{{totalMinutes}}</label>
+            <label style="font-family: Gotham Book,sans-serif;">Total time logged: {{totalHours}}:{{totalMinutes}}</label>
         </div>
         <table style="table-layout:inherit;width: 100%">
             <tbody ng-repeat="snapshots in snapshotsUser track by $index">
             <tr ng-show="snapshots.length > 1">
                 <td ng-repeat="snapshot in snapshots track by $index" rowspan="2" ng-show="$index == 0"
                     style="width: 19px; height: 139px; background: #f2f2f0">
-                    <label class="control-label">{{convertTime(snapshot.order)}}</label>
+                    <label>{{convertTime(snapshot.order)}}</label>
                 </td>
                 <td style="height: 21px" ng-repeat="snapshot in snapshots track by $index" colspan="6"
                     ng-show="$index != 0">
@@ -43,16 +43,17 @@
                          style="border: 1px dashed #d2d6de;idth: 150px; height: 100px; padding: 1px;">
                     </div>
                     <div ng-if="snapshot.file != undefined">
-
-                        <img style="width: 150px; height: 100px; padding: 1px;"
-                             ng-src="data:image/jpg;base64,{{snapshot.file}}"
-                             ng-click="getFullImageSrc(snapshot.id)"
-                             class="img-responsive" snapshot="snapshot.file"
-                             message="snapshot.message"
-                             time="snapshot.time"
-                             percent="snapshot.userActivityPercent"
-                             note="snapshot.note"
-                             custom-popover popover-placement="right">
+                        <div id="wrap">
+                            <img style="width: 150px; height: 100px; padding: 1px;"
+                                 ng-src="data:image/jpg;base64,{{snapshot.file}}"
+                                 ng-click="getFullImageSrc(snapshot.id)"
+                                 class="img-responsive" snapshot="snapshot.file"
+                                 message="snapshot.message"
+                                 time="snapshot.time"
+                                 percent="snapshot.userActivityPercent"
+                                 note="snapshot.note"
+                                 custom-popover popover-placement="right">
+                        </div>
                         <script>
                             $(function () {
                                 $("[data-toggle='tooltip']").tooltip();
