@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '$scope', 'snapshot', 'authorization', function($routeParams, snapshots, $scope, snapshot, authorization) {
-    var userId;
+app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '$scope', 'snapshot', 'authorization', 'users', function($routeParams, snapshots, $scope, snapshot, authorization, users) {
+   // var userId;
     var user;
     var url = '/user/authorized';
 
@@ -49,24 +49,24 @@ app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '
     }
 
     var successLogin = function (user) {
-        userId = user.id;
+        //userId = currentItem.userId;
         $scope.date = moment().format('YYYY-MM-DD');
-        snapshots.snapshotsByUserAndDate(userId,$scope.date).success(successSnapshotsByUser);
+        snapshots.snapshotsByUserAndDate($scope.userId,$scope.date).success(successSnapshotsByUser);
     };
 
     $scope.goToPreviousDate = function(date) {
         $scope.date = moment(new Date(date)).subtract(1, 'days').format('YYYY-MM-DD');
-        snapshots.snapshotsByUserAndDate(userId,$scope.date).success(successSnapshotsByUser);
+        snapshots.snapshotsByUserAndDate($scope.userId,$scope.date).success(successSnapshotsByUser);
     }
 
     $scope.goToNextDate = function(date) {
         $scope.date = moment(new Date(date)).add(1, 'days').format('YYYY-MM-DD');
-        snapshots.snapshotsByUserAndDate(userId,$scope.date).success(successSnapshotsByUser);
+        snapshots.snapshotsByUserAndDate($scope.userId,$scope.date).success(successSnapshotsByUser);
     }
 
     $scope.goToSelectedDate = function(date) {
         $scope.date = moment(new Date(date)).format('YYYY-MM-DD');
-        snapshots.snapshotsByUserAndDate(userId,$scope.date).success(successSnapshotsByUser);
+        snapshots.snapshotsByUserAndDate($scope.userId,$scope.date).success(successSnapshotsByUser);
     }
 
     $scope.isMoreOrEqualThanCurrentDate = function() {
@@ -77,8 +77,12 @@ app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '
         return time + ":00";
     }
 
+    var successUsers = function (userItems) {
+        $scope.userItems = userItems;
+    }
+
     authorization.login(url,window.localStorage.client).success(successLogin);
 
-
+    users.getUsers().success(successUsers);
 
 }])

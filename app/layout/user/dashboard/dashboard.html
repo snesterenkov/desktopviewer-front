@@ -1,5 +1,15 @@
 <div style="padding-top: 20px;">
     <div class="container" style="width: 100%!important; text-align: center">
+        <div class="row" >
+
+
+            <div>
+
+                <select style="display: inline-block; width: 194px; height: 40px; text-align: center !important;"  name="userId" class="form-control" ng-model="userDTO" ng-change="userId = userDTO.id;goToSelectedDate(date)"  ng-options="sc.lastName for sc in userItems track by sc.id" required>
+                    <option value="">-- choose user --</option>
+                </select>
+            </div>
+        </div>
         <div class="row">
             <div>
                 <a class="btn" href="#dashboard" ng-click="goToPreviousDate(date)"
