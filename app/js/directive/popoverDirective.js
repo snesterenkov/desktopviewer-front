@@ -13,7 +13,8 @@ directives.directive('customPopover', function ($compile, snapshot) {
                 trigger: 'hover',
                 html: true,
                 content: $compile(
-                    '<img style="width: 450px; height: 300px; padding: 1px;" ng-src="data:image/jpg;base64,{{snapshot}}" class="img-responsive">'+
+                    '<img style="border-radius: 0.5em; width: 450px; height: 300px; padding-top: 20px;padding-bottom: 20px;padding-left: 15px; padding-right: 15px; border: 2px solid green;"' +
+                        ' ng-src="data:image/jpg;base64,{{snapshot}}" class="img-responsive">'+
                     '<label>Snapshot taken: &nbsp {{time}}</label><br/>' +
                     '<label>Memo: &nbsp {{message}}</label><br/>'+
                     '<label>Active window: &nbsp {{note}}</label><br/>'+
