@@ -1,10 +1,7 @@
 <div style="padding-top: 20px;">
     <div class="container" style="width: 100%!important; text-align: center">
         <div class="row" >
-
-
             <div>
-
                 <select style="display: inline-block; width: 194px; height: 40px; text-align: center !important;"  name="userId" class="form-control" ng-model="userDTO" ng-change="userId = userDTO.id;goToSelectedDate(date)"  ng-options="sc.lastName for sc in userItems track by sc.id" required>
                     <option value="">-- choose user --</option>
                 </select>
@@ -30,7 +27,6 @@
             </script>
         </div>
     </div>
-
     <div>
         <div>
             <label style="font-family: Gotham Book,sans-serif;">Total time logged: {{totalHours}}:{{totalMinutes}}</label>
@@ -42,15 +38,14 @@
                     style="width: 19px; height: 139px; background: #f2f2f0">
                     <label>{{convertTime(snapshot.order)}}</label>
                 </td>
-                <td style="height: 21px" ng-repeat="snapshot in snapshots track by $index" colspan="6"
-                    ng-show="$index != 0">
-                    <label class="control-label label-success">{{snapshot.message}}</label>
-                </td>
             </tr>
             <tr ng-show="snapshots.length > 1">
+
                 <td ng-repeat="snapshot in snapshots track by $index" ng-show="$index != 0">
+                    <label>{{snapshot.message}}</label>
                     <div ng-if="snapshot.file == undefined"
-                         style="border: 1px dashed #d2d6de;idth: 150px; height: 100px; padding: 1px;">
+                         style="border: 1px dashed #d2d6de;width: 150px; height: 100px; padding: 1px;">
+
                     </div>
                     <div ng-if="snapshot.file != undefined">
                         <div id="wrap">
@@ -70,11 +65,9 @@
                                 $("[data-toggle='popover']").popover();
                             });
                         </script>
-
                     </div>
                     <div style="height: 21px;width: 150px;">
                         <label class="control-label" style="float: left; height: 14px;">{{snapshot.time}}&nbsp</label>
-
                         <div class="progress progress-striped">
                             <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100"
                                  style="width: {{snapshot.userActivityPercent}}%;">
@@ -86,7 +79,6 @@
             </tr>
             </tbody>
         </table>
-
     </div>
     <div class="modal fade" ng-include="'layout/snapshot/snapshotModal.html'" id="snapshotModal" role="dialog"
          aria-hidden="true"></div>
