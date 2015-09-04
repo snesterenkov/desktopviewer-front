@@ -14,10 +14,10 @@ directives.directive('customPopover', function ($compile, snapshot) {
                 html: true,
                 content: $compile(
                     '<img style="border-radius: 0.5em; width: 450px; height: 300px; padding-top: 20px;padding-bottom: 20px;padding-left: 15px; padding-right: 15px; border: 2px solid green;"' +
-                        ' ng-src="data:image/jpg;base64,{{snapshot}}" class="img-responsive">'+
-                    '<label class="labels">Snapshot taken:</label> <label class="values"> &nbsp {{time}}</label><br/>' +
-                    '<label class="labels">Memo: </label> <label class="values"> &nbsp {{message}}</label><br/>'+
-                    '<label class="labels">Active window: </label> <div class="box"><div class="text"><label class="values" > {{note}}</label></div></div>'+
+                        ' ng-src="data:image/jpg;base64,{{snapshot}}" class="img-responsive"><br/>'+
+                    '<label class="labels">Snapshot taken:</label> <label>{{time}}</label><br/>' +
+                    '<label class="labels">Memo: </label> <label> {{message}}</label><br/>'+
+                    '<label class="labels">Active window: </label> <div class="box"><div class="text"><label> {{note}}</label></div></div>'+
                     '<label class="labels">Activity: &nbsp </label>'+
                     '<div style="max-width: 450px">'+
                     '<div class="progress progress-striped">'+

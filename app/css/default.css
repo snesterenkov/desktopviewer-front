@@ -3,7 +3,14 @@ body {
     padding-top: 60px;
     padding-bottom: 40px;
     background-color: white;
+    font-size: 15px!important;
+    font-family: Arial, Tahoma, 'Microsoft Sans Serif';
 }
+
+label {
+    font-weight: normal!important;
+}
+
 .form-signin {
     max-width: 330px;
     padding: 15px;
@@ -46,9 +53,8 @@ div.scroll-table {
 }
 
 .labels {
-    font-family: Gotham Book,sans-serif;
     float: left;
-    width: 140px;
+    width: 130px;
 }
 
 .values {
