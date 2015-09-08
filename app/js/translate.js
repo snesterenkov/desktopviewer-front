@@ -13,11 +13,12 @@ app.config(['$translateProvider', function ($translateProvider) {
         'Sign in': 'Sign in',
         'Sign out': 'Sign out',
         'Please sign in': 'Please sign in',
-        'Password':'Password',
-        'Dashboard':'Dashboard',
-        'WorkingDiary': 'Working diary',        'Filters':'Filters',
+        'Password': 'Password',
+        'Dashboard': 'Dashboard',
+        'WorkingDiary': 'Working diary',
         'Reports': 'Reports',
-        'Screenshots': 'Screenshots'
+        'Screenshots': 'Screenshots',
+        'Employees': 'Employees'
     });
 
     $translateProvider.translations('ru', {
@@ -32,7 +33,8 @@ app.config(['$translateProvider', function ($translateProvider) {
         'Please sign in': 'Войдите пожалуйста',
         'Password':'Пароль',
         'WorkingDiary': 'Рабочий дневник',
-        'Filters':'Фильтры'
+        'Reports': 'Отчеты',
+        'Employees': 'Сотрудники'
     });
 
     $translateProvider.preferredLanguage('ru');
