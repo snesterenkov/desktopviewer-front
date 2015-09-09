@@ -1,8 +1,8 @@
 
 <br/>
 <br/>
-<div id="employees-filters" class="col-lg-12 col-md-12">
-    <div class=" col-lg-4 col-md-4 ">
+<div id="employees-filters" class="col-lg-12 col-md-12 col-sm-12">
+    <div class="col-lg-3 col-md-3 col-sm-6">
         <div class="form-group">
             <select class="form-control" id="select_company" ng-options="company.name for company in companies"
                     ng-model="selectedCompany" ng-change="filterDepartments()">
@@ -10,7 +10,7 @@
             </select>
         </div>
     </div>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-3 col-md-3 col-sm-6">
         <div class="form-group">
             <select class="form-control" id="select_department" ng-options="department.name for department in departments"
                     ng-model="selectedDepartment" ng-change="filterProjects();">
@@ -18,7 +18,7 @@
             </select>
         </div>
     </div>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-3 col-md-3 col-sm-6">
         <div class="form-group">
             <select class="form-control" id="select_project" ng-options="project.name for project in projects"
                     ng-model="selectedProject" ng-change="filterUsers()">
@@ -26,22 +26,39 @@
             </select>
         </div>
     </div>
+    <div class="col-lg-3 col-md-3 col-sm-6">
+        <div class="form-group">
+            <input type='text' class="form-control" id='datetimepicker' ng-model="date"
+                   picker
+                   style="display: inline-block; width: 194px; height: 30px; text-align: center !important;"/>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker').datetimepicker({
+                    locale: 'ru',
+                    format: 'YYYY-MM-DD'
+                });
+            });
+        </script>
+    </div>
 </div>
 <br/>
 <br/>
-<div id="employees-grid" class="col-lg-12 col-md-12">
+<div id="employees-grid" class="col-lg-12 col-md-12 col-sm-12">
     <table class="table table-hover">
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Lastname</th>
-                <th>Report</th>
+                <th>Productivity</th>
+                <th>Time</th>
+                <th>Start at</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="u in users">
-                <td>{{ u.firstName}}</td>
-                <td>{{ u.lastName}}</td>
+                <td>{{ u.firstName + ' ' + u.lastName}}</td>
+                <td></td>
+                <td></td>
                 <td></td>
             </tr>
         </tbody>

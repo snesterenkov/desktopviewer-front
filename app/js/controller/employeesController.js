@@ -4,6 +4,7 @@ app.controller('EmployeesController',['$injector','$scope', 'ClientCompanies', '
                                                                                                                                $scope, ClientCompanies, ClientDepartments, ClientProjects) {
 
     $scope.users = {};
+    $scope.date = moment(new Date()).format('YYYY-MM-DD');
 
     $scope.getProjects = function() {
         var successGetProjects = function(projects) {
