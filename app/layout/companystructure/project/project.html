@@ -12,9 +12,11 @@
 <table ng-show="items.length > 0" class="table table-striped">
     <thead>
     <tr>
-        <th>Project name</th>
-        <th>Project status</th>
-        <th>Department project</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Department</th>
+        <th>Workers</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -22,6 +24,7 @@
         <td>{{project.name}}</td>
         <td>{{project.status}}</td>
         <td>{{project.departmentDTO.name}}</td>
+        <td>{{project.userDTOs.length}}</td>
         <td>
             <button class="btn btn-primary btn-sm" ng-show="project.status =='OPEN'" ng-click="getProjectItemForUpdate(project)" data-toggle="modal"
                     data-target="#editAndAddModal">Edit
