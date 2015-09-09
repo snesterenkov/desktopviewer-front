@@ -60,6 +60,9 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
             templateUrl: 'layout/employees.html',
             controller: 'EmployeesController'
         })
+        .when('/my', {
+            templateUrl: 'layout/user/personalPage.html'
+        })
         .otherwise({redirectTo: '/login'});
 
     $httpProvider.interceptors.push('authInjector');
