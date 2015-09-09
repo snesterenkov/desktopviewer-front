@@ -33,6 +33,7 @@ app.controller('EmployeesController',['$injector','$scope', 'ClientCompanies', '
     };
 
     $scope.filterDepartments = function() {
+        $scope.selectedDepartment = null;
         $scope.departments = collectDepartments($scope.selectedCompany || $scope.companies);
         $scope.filterProjects();
     };
@@ -51,6 +52,7 @@ app.controller('EmployeesController',['$injector','$scope', 'ClientCompanies', '
     };
 
     $scope.filterProjects = function() {
+        $scope.selectedProject = null;
         $scope.projects = collectProjects($scope.selectedDepartment || $scope.departments, $scope.allProjects);
         $scope.filterUsers();
     };
