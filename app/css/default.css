@@ -74,3 +74,17 @@ div.scroll-table {
     text-align:                 justify;
 }
 
+.informer{
+    color: #317eac;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-align: center;
+}
+
+.informer-label{
+    font-size: 18px;
+}
+
+.informer-data{
+    font-size: 50px;
+}
+
