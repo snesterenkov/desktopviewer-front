@@ -18,7 +18,9 @@ app.config(['$translateProvider', function ($translateProvider) {
         'WorkingDiary': 'Working diary',
         'Reports': 'Reports',
         'Screenshots': 'Screenshots',
-        'Employees': 'Employees'
+        'Employees': 'Employees',
+        'My page': 'My page',
+        'Settings': 'Settings'
     });
 
     $translateProvider.translations('ru', {
@@ -34,7 +36,9 @@ app.config(['$translateProvider', function ($translateProvider) {
         'Password':'Пароль',
         'WorkingDiary': 'Рабочий дневник',
         'Reports': 'Отчеты',
-        'Employees': 'Сотрудники'
+        'Employees': 'Сотрудники',
+        'My page': 'Моя страница',
+        'Settings': 'Настройки'
     });
 
     $translateProvider.preferredLanguage('ru');
