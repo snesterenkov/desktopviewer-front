@@ -45,6 +45,15 @@ app.controller('SnapshotsCurrentUserController' ,['$routeParams', 'snapshots', '
         snapshot.snapshotById(snapshotId).success(successSnapshot);
     }
 
+    $scope.isShowingRow = function(snapshots) {
+        for (var key in snapshots) {
+            if(key >= 2 && snapshots[key] != '') {
+               return true;
+            }
+        }
+        return false;
+    }
+
     $scope.calculateCollspan = function (snapshotsUser) {
         var messageArrayStart = new Array(25);
         var idArrayStart = new Array(25);
