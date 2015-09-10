@@ -38,11 +38,15 @@
                     style="width: 19px; height: 139px; background: #f2f2f0">
                     <label>{{convertTime(snapshot.order)}}</label>
                 </td>
+                <td ng-repeat="snapshot in snapshots track by $index" ng-show="$index != 0 " colspan="{{countSnap[snapshot.id]}}">
+                    <div ng-class="snapshot.file != undefined ? 'oWdGridMemo':''" ng-show="countSnap[snapshot.id] != undefined"><span>{{snapshot.message}}</span></div>
+
+                </td>
             </tr>
             <tr ng-show="snapshots.length > 1">
 
                 <td ng-repeat="snapshot in snapshots track by $index" ng-show="$index != 0">
-                    <label>{{snapshot.message}}</label>
+
                     <div ng-if="snapshot.file == undefined"
                          style="border: 1px dashed #d2d6de;width: 150px; height: 100px; padding: 1px;">
 
