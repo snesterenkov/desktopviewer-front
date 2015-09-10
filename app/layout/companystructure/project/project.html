@@ -1,4 +1,12 @@
-
+<br/>
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#/settings/company">{{ 'Company' | translate}}</a></li>
+    <li role="presentation"><a href="#/settings/department">{{ 'Department' | translate}}</a></li>
+    <li role="presentation" class="active"><a href="#/settings/project">{{ 'Project' | translate}}</a></li>
+    <li role="presentation"><a href="#/settings/user">{{ 'User' | translate}}</a></li>
+</ul>
+<br/>
+<bt/>
 <button type="button" class="btn btn-success btn-sm" ng-click="createProjectNewItem()" data-toggle="modal"
         data-target="#editAndAddModal">
     Create new project
@@ -12,9 +20,11 @@
 <table ng-show="items.length > 0" class="table table-striped">
     <thead>
     <tr>
-        <th>Project name</th>
-        <th>Project status</th>
-        <th>Department project</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Department</th>
+        <th>Workers</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -22,6 +32,7 @@
         <td>{{project.name}}</td>
         <td>{{project.status}}</td>
         <td>{{project.departmentDTO.name}}</td>
+        <td>{{project.userDTOs.length}}</td>
         <td>
             <button class="btn btn-primary btn-sm" ng-show="project.status =='OPEN'" ng-click="getProjectItemForUpdate(project)" data-toggle="modal"
                     data-target="#editAndAddModal">Edit

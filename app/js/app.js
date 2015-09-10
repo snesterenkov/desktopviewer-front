@@ -7,7 +7,7 @@ var filters = angular.module('app.filters', []);
 
 app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
 
-    $routeProvider.when('/user', {
+    $routeProvider.when('/settings/user', {
         templateUrl: 'layout/user/user.html',
         controller: 'UserController'
     })
@@ -26,14 +26,14 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
         .when('/editProfile', {
             templateUrl: 'layout/user/editProfile.html'
         })
-        .when('/company', {
+        .when('/settings/company', {
             templateUrl: 'layout/companystructure/company/company.html',
             controller: 'CompanyController'
         })
-        .when('/department', {
+        .when('/settings/department', {
             templateUrl: 'layout/companystructure/department/department.html',
             controller: 'DepartmentController'
-        }).when('/project', {
+        }).when('/settings/project', {
             templateUrl: 'layout/companystructure/project/project.html',
             controller: 'ProjectController'
         })
@@ -55,6 +55,13 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
         .when('/userProjects', {
             templateUrl: 'layout/user/userProjects/userProjects.html',
             controller: 'ProjectsCurrentUserController'
+        })
+        .when('/employees', {
+            templateUrl: 'layout/employees.html',
+            controller: 'EmployeesController'
+        })
+        .when('/my', {
+            templateUrl: 'layout/user/personalPage.html'
         })
         .otherwise({redirectTo: '/login'});
 
