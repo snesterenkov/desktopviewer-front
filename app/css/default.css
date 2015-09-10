@@ -79,6 +79,7 @@ div.scroll-table {
     color: #fff;
     cursor: default;
     height: 21px;
+    width: 150px;
     margin-top: 5px;
     overflow: hidden;
     padding: 2px 12px;
