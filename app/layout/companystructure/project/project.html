@@ -28,7 +28,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="project in items">
+    <tr ng-repeat="project in items | orderBy: name">
         <td>{{project.name}}</td>
         <td>{{project.status}}</td>
         <td>{{project.departmentDTO.name}}</td>
