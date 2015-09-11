@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('EmployeesController',['$injector','$scope', 'ClientCompanies', 'ClientDepartments', 'ClientProjects', function($injector,
-                                                                                                                               $scope, ClientCompanies, ClientDepartments, ClientProjects) {
+app.controller('EmployeesController',['$injector','$scope', '$location', 'ClientCompanies', 'ClientDepartments', 'ClientProjects', 'transferService', function(
+        $injector, $scope, $location,ClientCompanies, ClientDepartments, ClientProjects, transferService) {
 
     $scope.users = {};
     $scope.date = moment(new Date()).format('YYYY-MM-DD');
@@ -70,6 +70,12 @@ app.controller('EmployeesController',['$injector','$scope', 'ClientCompanies', '
 
     $scope.filterUsers = function() {
         $scope.users = collectUsers($scope.selectedProject || $scope.projects);
+    };
+
+    $scope.goToEmployeePage = function(user) {
+        transferService.setField('user', user);
+        transferService.setField('date', angular.copy($scope.date));
+        $location.path('/employee');
     };
 
     $scope.getProjects();

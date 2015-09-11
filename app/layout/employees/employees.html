@@ -55,7 +55,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="u in users | orderBy: 'lastName' ">
+            <tr ng-repeat="u in users | orderBy: 'lastName' " ng-click="goToEmployeePage(u)">
                 <td>{{ u.lastName + ' ' + u.firstName}}</td>
                 <td></td>
                 <td></td>
