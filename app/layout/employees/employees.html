@@ -55,7 +55,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="u in users | orderBy: lastName">
+            <tr ng-repeat="u in users | orderBy: 'lastName' ">
                 <td>{{ u.lastName + ' ' + u.firstName}}</td>
                 <td></td>
                 <td></td>

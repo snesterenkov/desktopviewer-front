@@ -28,7 +28,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="user in items | orderBy: lastName ">
+    <tr ng-repeat="user in items | orderBy: 'lastName' ">
         <td>{{user.lastName}}</td>
         <td>{{user.firstName}}</td>
         <td>{{user.login}}</td>
