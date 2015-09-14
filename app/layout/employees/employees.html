@@ -27,10 +27,16 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6">
-        <div class="form-group">
-            <input type='text' class="form-control" id='datetimepicker' ng-model="date"
+        <div class="input-group">
+            <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="goToPreviousDate(date)"> < </button>
+            </span>
+            <input type='text' class="form-control" id='datetimepicker' ng-model="date" ng-change="goToSelectedDate(date)"
                    picker
                    style="display: inline-block; text-align: center !important;"/>
+            <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="goToNextDate(date)"> > </button>
+            </span>
         </div>
         <script type="text/javascript">
             $(function () {
@@ -55,7 +61,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="u in users | orderBy: 'lastName' " ng-click="goToEmployeePage(u)">
+            <tr ng-repeat="u in users track by u.id" ng-click="goToEmployeePage(u)">
                 <td>{{ u.lastName + ' ' + u.firstName}}</td>
                 <td></td>
                 <td></td>

@@ -78,6 +78,18 @@ app.controller('EmployeesController',['$injector','$scope', '$location', 'Client
         $location.path('/employee');
     };
 
+    $scope.goToSelectedDate = function(date) {
+        $scope.date = moment(new Date(date)).format('YYYY-MM-DD');
+    };
+
+    $scope.goToPreviousDate = function(date) {
+        $scope.date = moment(new Date(date)).subtract(1, 'days').format('YYYY-MM-DD');
+    };
+
+    $scope.goToNextDate = function(date) {
+        $scope.date = moment(new Date(date)).add(1, 'days').format('YYYY-MM-DD');
+    };
+
     $scope.getProjects();
     $scope.getCompanies();
 

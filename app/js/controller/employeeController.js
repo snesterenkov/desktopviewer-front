@@ -16,6 +16,18 @@ app.controller('EmployeeController', ['$injector', '$scope', 'transferService', 
         }
     };
 
+    $scope.goToSelectedDate = function(date) {
+        $scope.date = moment(new Date(date)).format('YYYY-MM-DD');
+    };
+
+    $scope.goToPreviousDate = function(date) {
+        $scope.date = moment(new Date(date)).subtract(1, 'days').format('YYYY-MM-DD');
+    };
+
+    $scope.goToNextDate = function(date) {
+        $scope.date = moment(new Date(date)).add(1, 'days').format('YYYY-MM-DD');
+    };
+
     authorization.login(url,window.localStorage.client).success(successLogin);
 
 }]);

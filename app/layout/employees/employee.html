@@ -7,17 +7,17 @@
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="input-group">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"> <</button>
+                    <button class="btn btn-default" type="button" ng-click="goToPreviousDate(date)"> < </button>
                 </span>
                 <!--<a class="btn" href="#dashboard" ng-click="goToPreviousDate(date)"
                         ><</a>-->
-                <input type='text' class="form-control" id='datetimepicker' ng-model="date"
+                <input type='text' class="form-control" id='datetimepicker' ng-model="date" ng-change="goToSelectedDate(date)"
                        picker
                        style="display: inline-block; text-align: center !important;"/>
                 <!--<a class="btn" href="#dashboard" ng-disabled="isMoreOrEqualThanCurrentDate()"
                    ng-click="goToNextDate(date)">></a>-->
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"> > </button>
+                    <button class="btn btn-default" type="button" ng-click="goToNextDate(date)"> > </button>
                 </span>
             </div>
             <script type="text/javascript">
