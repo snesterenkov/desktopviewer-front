@@ -64,7 +64,6 @@ div.scroll-table {
 
 .box {
     position:                   relative;
-    font-family:                bold;
     display:                    block;
     overflow:                   hidden;
 }
@@ -72,6 +71,20 @@ div.scroll-table {
     overflow:                   hidden;
     line-height:                1;
     text-align:                 justify;
+}
+
+.oWdGridMemo {
+    background: #5bbc2e none repeat scroll 0 0;
+    border-radius: 10px;
+    color: #fff;
+    cursor: default;
+    height: 21px;
+    width: 150px;
+    margin-top: 5px;
+    overflow: hidden;
+    padding: 2px 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .informer{
