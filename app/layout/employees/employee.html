@@ -9,13 +9,9 @@
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" ng-click="goToPreviousDate(date)"> < </button>
                 </span>
-                <!--<a class="btn" href="#dashboard" ng-click="goToPreviousDate(date)"
-                        ><</a>-->
                 <input type='text' class="form-control" id='datetimepicker' ng-model="date" ng-change="goToSelectedDate(date)"
                        picker
                        style="display: inline-block; text-align: center !important;"/>
-                <!--<a class="btn" href="#dashboard" ng-disabled="isMoreOrEqualThanCurrentDate()"
-                   ng-click="goToNextDate(date)">></a>-->
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" ng-click="goToNextDate(date)"> > </button>
                 </span>
@@ -52,21 +48,72 @@
             <div class="col-lg-4 col-md-4">
                 <div class="informer">
                     <div class="informer-label">Start at:</div>
-                    <div class="informer-data">8.30</div>
+                    <div class="informer-data">{{startTime}}</div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="informer">
                     <div class="informer-label">Time:</div>
-                    <div class="informer-data">7h30m</div>
+                    <div class="informer-data">{{workTime}}</div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="informer">
                     <div class="informer-label">Productivity:</div>
-                    <div class="informer-data">100%</div>
+                    <div class="informer-data">{{productivity}}</div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<br/>
+<div>
+    <table style="table-layout:inherit; width: 100%">
+        <tbody ng-repeat="snapshots in snapshotsUser track by $index">
+        <tr ng-show="snapshots.length > 1">
+            <td ng-repeat="snapshot in snapshots track by $index" rowspan="2" ng-show="$index == 0"
+                style="width: 19px; height: 139px; background: #f2f2f0">
+                <label>{{convertTime(snapshot.order)}}</label>
+            </td>
+        </tr>
+        <tr ng-show="snapshots.length > 1">
+
+            <td ng-repeat="snapshot in snapshots track by $index" ng-show="$index != 0">
+                <label>{{snapshot.message}}</label>
+                <div ng-if="snapshot.file == undefined"
+                     style="border: 1px dashed #d2d6de;width: 150px; height: 100px; padding: 1px;">
+
+                </div>
+                <div ng-if="snapshot.file != undefined">
+                    <div id="wrap">
+                        <img style="width: 150px; height: 100px; padding: 1px;"
+                             ng-src="data:image/jpg;base64,{{snapshot.file}}"
+                             ng-click="getFullImageSrc(snapshot.id)"
+                             class="img-responsive" snapshot="snapshot.file"
+                             message="snapshot.message"
+                             time="snapshot.time"
+                             percent="snapshot.userActivityPercent"
+                             note="snapshot.note"
+                             custom-popover popover-placement="right">
+                    </div>
+                    <script>
+                        $(function () {
+                            $("[data-toggle='tooltip']").tooltip();
+                            $("[data-toggle='popover']").popover();
+                        });
+                    </script>
+                </div>
+                <div style="height: 21px;width: 150px;">
+                    <label class="control-label" style="float: left; height: 14px;">{{snapshot.time}}&nbsp</label>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar progress-bar-success" aria-valuemin="0" aria-valuemax="100"
+                             style="width: {{snapshot.userActivityPercent}}%;">
+                            <span style="color: #000000;"></span>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
