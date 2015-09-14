@@ -11,6 +11,7 @@ app.controller('EmployeesController',['$injector','$scope', '$location', 'Client
             $scope.projects = projects;
             $scope.allProjects = [].concat(projects);
             $scope.filterUsers();
+            $scope.getCompanies();
         };
         ClientProjects.getProjects().success(successGetProjects);
     };
@@ -91,6 +92,6 @@ app.controller('EmployeesController',['$injector','$scope', '$location', 'Client
     };
 
     $scope.getProjects();
-    $scope.getCompanies();
+
 
 }]);
