@@ -26,4 +26,27 @@ services
                 });
             }
         };
-    });
+    })
+    .factory('restoreUserPassword', function($rootScope, SERVER_URL, $http){
+        return {
+            sendLetterOnEmail: function(email){
+                return $http.get(SERVER_URL + '/user/requestOnChangingPassword',{
+                    params:{
+                        email: email
+                    }
+                });
+            }
+        };
+    })
+    .factory('changeUserPassword', function($rootScope, SERVER_URL, $http){
+        return {
+            change: function(password, token){
+                return $http.get(SERVER_URL + '/user/changePassword/' + token,{
+                    params:{
+                        password: password
+                    }
+                });
+            }
+        };
+    })
+;

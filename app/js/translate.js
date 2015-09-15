@@ -20,7 +20,9 @@ app.config(['$translateProvider', function ($translateProvider) {
         'Snapshot': 'Snapshots',
         'Employees': 'Employees',
         'My page': 'My page',
-        'Settings': 'Settings'
+        'Settings': 'Settings',
+        'Recovery password': 'Recovery password'
+
     });
 
     $translateProvider.translations('ru', {
@@ -39,7 +41,8 @@ app.config(['$translateProvider', function ($translateProvider) {
         'Reports': 'Отчеты',
         'Employees': 'Сотрудники',
         'My page': 'Моя страница',
-        'Settings': 'Настройки'
+        'Settings': 'Настройки',
+        'Recovery password': 'Восстановление пароля'
     });
 
     $translateProvider.preferredLanguage('ru');

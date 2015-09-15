@@ -4,7 +4,7 @@
             <nav class="pageCentered">
                 <ul class="nav navbar-nav" ng-show="isLoggedIn"
                     style="height: 60px; width: 1903px; margin: 0 auto;">
-                    <!--<li><a href="#/userProjects">{{ 'MyProjects' | translate }}</a></li>-->
+
                     <li><a href="#/my">{{ 'My page' | translate }}</a></li>
                     <li><a href="#/employees">{{ 'Employees' | translate }}</a></li>
                     <li><a href="#/settings/company">{{ 'Settings' | translate }}</a></li>
@@ -31,6 +31,7 @@
 
                 </div>
                 <ul class="nav navbar-nav navbar-right" ng-show="!isLoggedIn">
+                    <li><a href="#/changePasswordRequest">{{ 'Recovery password' | translate }}</a></li>
                     <li><a href="#/registration">{{ 'Registration' | translate }}</a></li>
                     <li><a href="#/login">{{ 'Sign in' | translate }}</a></li>
                     <li>
