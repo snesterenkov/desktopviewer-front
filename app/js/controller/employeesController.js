@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('EmployeesController',['$injector','$scope', 'ClientCompanies', 'ClientDepartments', 'ClientProjects', function($injector,
-                                                                                                                               $scope, ClientCompanies, ClientDepartments, ClientProjects) {
+app.controller('EmployeesController',['$injector','$scope', '$location', 'ClientCompanies', 'ClientDepartments', 'ClientProjects', 'transferService', function(
+        $injector, $scope, $location,ClientCompanies, ClientDepartments, ClientProjects, transferService) {
 
     $scope.users = {};
     $scope.date = moment(new Date()).format('YYYY-MM-DD');
@@ -11,6 +11,7 @@ app.controller('EmployeesController',['$injector','$scope', 'ClientCompanies', '
             $scope.projects = projects;
             $scope.allProjects = [].concat(projects);
             $scope.filterUsers();
+            $scope.getCompanies();
         };
         ClientProjects.getProjects().success(successGetProjects);
     };
@@ -72,7 +73,25 @@ app.controller('EmployeesController',['$injector','$scope', 'ClientCompanies', '
         $scope.users = collectUsers($scope.selectedProject || $scope.projects);
     };
 
+    $scope.goToEmployeePage = function(user) {
+        transferService.setField('user', user);
+        transferService.setField('date', angular.copy($scope.date));
+        $location.path('/employee');
+    };
+
+    $scope.goToSelectedDate = function(date) {
+        $scope.date = moment(new Date(date)).format('YYYY-MM-DD');
+    };
+
+    $scope.goToPreviousDate = function(date) {
+        $scope.date = moment(new Date(date)).subtract(1, 'days').format('YYYY-MM-DD');
+    };
+
+    $scope.goToNextDate = function(date) {
+        $scope.date = moment(new Date(date)).add(1, 'days').format('YYYY-MM-DD');
+    };
+
     $scope.getProjects();
-    $scope.getCompanies();
+
 
 }]);

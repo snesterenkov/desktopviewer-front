@@ -57,11 +57,16 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
             controller: 'ProjectsCurrentUserController'
         })
         .when('/employees', {
-            templateUrl: 'layout/employees.html',
+            templateUrl: 'layout/employees/employees.html',
             controller: 'EmployeesController'
         })
         .when('/my', {
-            templateUrl: 'layout/user/personalPage.html'
+            templateUrl: 'layout/employees/employee.html',
+            controller: 'EmployeeController'
+        })
+        .when('/employee', {
+            templateUrl: 'layout/employees/employee.html',
+            controller: 'EmployeeController'
         })
         .when('/changePasswordRequest', {
             templateUrl: 'layout/user/changePasswordRequest.html',
