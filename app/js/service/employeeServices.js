@@ -21,4 +21,15 @@ services
                 return $http.get(SERVER_URL + '/project');
             }
         };
+    })
+    .factory('UsersStats', function($rootScope, SERVER_URL, $http) {
+        return {
+            getUsersStats: function(date) {
+                return $http.get(SERVER_URL + '/snapshot/user/stats/date',{
+                    params: {
+                        date : date
+                    }
+                });
+            }
+        };
     });
