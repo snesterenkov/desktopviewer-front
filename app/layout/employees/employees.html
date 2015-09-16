@@ -55,17 +55,17 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Productivity</th>
                 <th>Time</th>
                 <th>Start at</th>
+                <th>Productivity</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="u in users track by u.id" ng-click="goToEmployeePage(u)">
                 <td>{{ u.lastName + ' ' + u.firstName}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ stats[u.id].snapshotsCount*10 || '--'  }}</td>
+                <td>{{ stats[u.id].startTime || '--' }}</td>
+                <td>--</td>
             </tr>
         </tbody>
     </table>
