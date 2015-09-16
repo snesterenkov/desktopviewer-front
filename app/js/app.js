@@ -6,7 +6,7 @@ var directives = angular.module('app.directives', ['ngResource']);
 var filters = angular.module('app.filters', []);
 
 app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
-
+    var token;
     $routeProvider.when('/settings/user', {
         templateUrl: 'layout/user/user.html',
         controller: 'UserController'
@@ -68,6 +68,14 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
             templateUrl: 'layout/employees/employee.html',
             controller: 'EmployeeController'
         })
+        .when('/changePasswordRequest', {
+            templateUrl: 'layout/user/changePasswordRequest.html',
+            controller: 'RestorePasswordController'
+        })
+        .when('/changingPassword/:token', {
+            templateUrl: 'layout/user/changePassword.html',
+            controller: 'RestorePasswordController'
+        })
         .otherwise({redirectTo: '/login'});
 
     $httpProvider.interceptors.push('authInjector');
@@ -77,7 +85,7 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
 
 app.run(['$rootScope', '$location', 'authorization', '$q', '$http', function ($rootScope, $location, authorization,$q, $http) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        if (!authorization.isLoggedIn()  && next.originalPath != '/registration')
+      if (!authorization.isLoggedIn()  && next.originalPath != '/registration' && next.originalPath != '/changePasswordRequest' && !String(next.originalPath).startsWith('/changingPassword'))
             $location.path('/login');
     });
 
