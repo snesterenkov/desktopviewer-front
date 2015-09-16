@@ -68,6 +68,8 @@ app.controller('EmployeeController', ['$injector', '$scope', 'transferService', 
                     snapshotsUserOnSix[hours][minutes] = snapshots[key];
             }
             $scope.snapshotsUser = snapshotsUserOnSix;
+        } else {
+            $scope.snapshotsUser = null;
         }
 
     };
