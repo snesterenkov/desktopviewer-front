@@ -98,6 +98,13 @@ app.controller('EmployeesController',['$injector','$scope', '$location', 'Client
         $scope.stats = stats;
     };
 
+    $scope.convertTime = function(minutes) {
+        if(minutes > 0){
+            return Math.floor(minutes/60) + 'h' + (minutes%60) + 'm';
+        }
+        return '--';
+    };
+
     $scope.getProjects();
     UsersStats.getUsersStats($scope.date).success(successStats);
 

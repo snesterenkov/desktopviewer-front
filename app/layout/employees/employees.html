@@ -63,7 +63,7 @@
         <tbody>
             <tr ng-repeat="u in users track by u.id" ng-click="goToEmployeePage(u)">
                 <td>{{ u.lastName + ' ' + u.firstName}}</td>
-                <td>{{ stats[u.id].snapshotsCount*10 || '--'  }}</td>
+                <td>{{ convertTime(stats[u.id].snapshotsCount*10) }}</td>
                 <td>{{ stats[u.id].startTime || '--' }}</td>
                 <td>--</td>
             </tr>
