@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('EmployeesController',['$injector','$scope', '$location', 'ClientCompanies', 'ClientDepartments', 'ClientProjects', 'transferService', function(
-        $injector, $scope, $location,ClientCompanies, ClientDepartments, ClientProjects, transferService) {
+app.controller('EmployeesController',['$injector','$scope', '$location', 'ClientCompanies', 'ClientDepartments', 'ClientProjects', 'UsersStats','transferService', function(
+        $injector, $scope, $location,ClientCompanies, ClientDepartments, ClientProjects, UsersStats,transferService) {
 
     $scope.users = {};
     $scope.date = moment(new Date()).format('YYYY-MM-DD');
@@ -81,17 +81,25 @@ app.controller('EmployeesController',['$injector','$scope', '$location', 'Client
 
     $scope.goToSelectedDate = function(date) {
         $scope.date = moment(new Date(date)).format('YYYY-MM-DD');
+        UsersStats.getUsersStats($scope.date).success(successStats);
     };
 
     $scope.goToPreviousDate = function(date) {
         $scope.date = moment(new Date(date)).subtract(1, 'days').format('YYYY-MM-DD');
+        UsersStats.getUsersStats($scope.date).success(successStats);
     };
 
     $scope.goToNextDate = function(date) {
         $scope.date = moment(new Date(date)).add(1, 'days').format('YYYY-MM-DD');
+        UsersStats.getUsersStats($scope.date).success(successStats);
+    };
+
+    var successStats = function(stats) {
+        $scope.stats = stats;
     };
 
     $scope.getProjects();
+    UsersStats.getUsersStats($scope.date).success(successStats);
 
 
 }]);
