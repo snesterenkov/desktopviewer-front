@@ -76,7 +76,11 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
 
 }]);
 
-app.run(['$rootScope', '$location', 'authorization', '$q', '$http', function ($rootScope, $location, authorization,$q, $http) {
+app.run(['$rootScope', '$location', 'authorization', '$q', '$http', '$templateCache', function ($rootScope, $location, authorization,$q, $http, $templateCache) {
+    $rootScope.$on('$viewContentLoaded', function() {
+        $templateCache.removeAll();
+    });
+
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
       if (!authorization.isLoggedIn()  && next.originalPath != '/registration' && next.originalPath != '/changePasswordRequest' && !String(next.originalPath).startsWith('/changingPassword'))
             $location.path('/login');
