@@ -4,7 +4,6 @@
             <nav class="pageCentered">
                 <ul class="nav navbar-nav" ng-show="isLoggedIn"
                     style="height: 60px; width: 1903px; margin: 0 auto;">
-
                     <li><a href="#/my">{{ 'My page' | translate }}</a></li>
                     <li><a href="#/employees">{{ 'Employees' | translate }}</a></li>
                     <li><a href="#/settings/company">{{ 'Settings' | translate }}</a></li>
@@ -19,8 +18,14 @@
                 </ul>
                 <div style="position: absolute; right:0;">
                     <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn">
-                        <li><a data-toggle="modal" data-target="#editModal">{{authorizedUser}}</a></li>
-                        <li><a href="#/login" ng-click="logout()">{{ 'Sign out' | translate }}</a></li>
+                        <li class="dropdown open">
+                            <a class="dropdown-toggle" data-toggle="modal" data-target="#editModal" role="button" aria-expanded="true">{{authorizedUser}}
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li><a href="#/login" ng-click="logout()">{{ 'Sign out' | translate }}</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <select ng-controller="LanguageController" name="language" ng-model="selectedLanguage"
                                     ng-options="language.name for language in languages track by language.name"
@@ -28,10 +33,8 @@
                             </select>
                         </li>
                     </ul>
-
                 </div>
                 <ul class="nav navbar-nav navbar-right" ng-show="!isLoggedIn">
-                    <li><a href="#/changePasswordRequest">{{ 'Recovery password' | translate }}</a></li>
                     <li><a href="#/registration">{{ 'Registration' | translate }}</a></li>
                     <li><a href="#/login">{{ 'Sign in' | translate }}</a></li>
                     <li>

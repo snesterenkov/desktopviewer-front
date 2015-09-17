@@ -6,15 +6,13 @@ app.controller('RestorePasswordController',[ '$injector', '$scope', 'restoreUser
 
     $scope.requestOnChangingPassword = function(email) {
         restoreUserPassword.sendLetterOnEmail(email).success(successSend);
-        var successSend = function (result) {
-            $scope.isSuccessed = result;
-        };
-
     }
+
+    var successSend = function (result) {
+        $scope.isSuccessed = result;
+    };
+
     $scope.setNewPassword = function(password) {
         $scope.isSuccessed =changeUserPassword.change(password, $routeParams.token).success(successSend);
-        var successSend = function (result) {
-            $scope.isSuccessed = result;
-        };
     }
 }])

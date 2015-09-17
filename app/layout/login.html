@@ -2,11 +2,11 @@
     <form name="loginForm" class="form-signin">
         <h3 class="form-signin-heading">{{ 'Please sign in' | translate }}</h3>
         <div class="form-group" ng-class="{'has-error': loginForm.$error.accessDenied}">
-        <label for="login" class="sr-only">{{ 'Login' | translate }}</label>
+        <label for="login">{{ 'Login' | translate }}</label>
         <input type="text" id="login" class="form-control" ng-model="login" placeholder="{{ 'Login' | translate }}"/>
 
 
-        <label for="password" class="sr-only">{{ 'Password' | translate }}</label>
+        <label for="password">{{ 'Password' | translate }} (<a href="#/changePasswordRequest">{{ 'Recovery password' | translate }}</a>)</label>
         <input type="password" id="password" class="form-control" ng-model="password" placeholder="{{ 'Password' | translate }}"/>
 
         <p ng-show="loginForm.$error.accessDenied" class="help-block">{{ 'Password or user is wrong' | translate }}</p>
