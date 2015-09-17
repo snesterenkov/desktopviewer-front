@@ -41,13 +41,6 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
             templateUrl: 'layout/snapshot/snapshotsView.html',
             controller: 'SnapshotController'
         })
-        .when('/dashboard', {
-            templateUrl: 'layout/user/dashboard/dashboard.html',
-            params: {
-                user: window.localStorage.client
-            },
-            controller: 'SnapshotsCurrentUserController'
-        })
         .when('/workDiary', {
             templateUrl: 'layout/user/dashboard/workDiary.html',
             controller: 'WorkDiaryController'
