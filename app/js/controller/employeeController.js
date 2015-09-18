@@ -44,18 +44,20 @@ app.controller('EmployeeController', ['$injector', '$scope', 'transferService', 
         if(snapshots.length){
             $scope.startTime = snapshots[0].time;
             $scope.workTime = getWorkTime(snapshots.length);
-            var startTime  = snapshots[0].time.split(":")[0];
-            var endTime = snapshots[snapshots.length - 1].time.split(":")[0];
-            var snapshotsUserOnSix = {};
+            var snapshotsUserOnSix = [];
 
-            for (var i = endTime; i >= startTime; i--) {
+            for (var i = 23; i >= 0; i--) {
                 snapshotsUserOnSix[i] = [];
                 snapshotsUserOnSix[i][0] = {order : i};
             }
 
-            for (var i = endTime; i >= startTime; i--) {
-                for (var j = 6; j > 1; j--)
+            for (var i = 23; i >= 0; i--) {
+                for (var j = 6; j >= 1; j--)
                     snapshotsUserOnSix[i][j] = "";
+            }
+
+            for (var i = 23; i >= 0; i--) {
+                    snapshotsUserOnSix[i][7] = 0;
             }
 
             for (var key in snapshots)
@@ -66,6 +68,7 @@ app.controller('EmployeeController', ['$injector', '$scope', 'transferService', 
                 var minutes = Math.floor(res[1]/10) + 1;
                 if(!isNaN(hours) && !isNaN(minutes))
                     snapshotsUserOnSix[hours][minutes] = snapshots[key];
+                    snapshotsUserOnSix[hours][7] += 1;
             }
             $scope.snapshotsUser = snapshotsUserOnSix;
         } else {
