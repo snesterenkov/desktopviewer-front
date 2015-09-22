@@ -21,14 +21,14 @@ app.controller('WorkDiaryController', [ '$scope', 'projectTransfer', 'workDiaryS
         return date > today? today:date;
     }
 
-    $scope.setStartDate = function(startDate) {
-        $scope.startDate = moment(new Date(startDate)).format('YYYY-MM-DD');
+    $scope.setStartDate = function(date) {
+        $scope.startDate = moment(new Date(date)).format('YYYY-MM-DD');
         $scope.startDate = limitDate($scope.startDate);
         $scope.endDate = checkEndDate();
     }
 
-    $scope.setEndDate = function(endDate) {
-        $scope.endDate = moment(new Date(endDate)).format('YYYY-MM-DD');
+    $scope.setEndDate = function(date) {
+        $scope.endDate = moment(new Date(date)).format('YYYY-MM-DD');
         $scope.endDate = limitDate($scope.endDate);
         $scope.endDate = checkEndDate();
     }

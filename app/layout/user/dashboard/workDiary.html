@@ -7,20 +7,16 @@
         <ul class="pager">
             <li style="color: #000000;">
                 <span class="dropdown">
-                    <a class="dropdown-toggle my-toggle-select" id="startDateLabel" role="button" data-toggle="dropdown"
-                       data-target="#" href="">
-                        <div class="input-append"><input type="text" class="input-large"
-                                                         data-ng-model="startDate"
-                                                         style="color: #000000;" placeholder="Start date"><span
-                                class="add-on"><i
-                                class="icon-calendar"></i></span>
-                        </div>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="startDateLabel">
-                        <datetimepicker data-ng-model="startDate" data-format
-                                        data-on-set-time="setStartDate(startDate)"
-                                        data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select', startView:'day', minView:'day'  }"></datetimepicker>
-                    </ul>
+                    <input type='text' class="form-control" id='datetimepicker' ng-model="date" set-date="setStartDate(date)" types="startDate" picker
+                           style="display: inline-block; width: 194px; height: 30px; text-align: center !important;"/>
+                     <script type="text/javascript">
+                         $(function () {
+                             $('#datetimepicker').datetimepicker({
+                                 locale: 'ru',
+                                 format: 'YYYY-MM-DD'
+                             });
+                         });
+                     </script>
                 </span>
             </li>
         </ul>
@@ -28,19 +24,17 @@
         <ul class="pager">
             <li style="color: #000000;">
                 <span class="dropdown">
-                    <a class="dropdown-toggle my-toggle-select" id="endDateLabel" role="button" data-toggle="dropdown"
-                       data-target="#" href="">
-                        <div class="input-append"><input type="text" class="input-large" data-ng-model="endDate"
-                                                         placeholder="End date"
-                                                         style="color: #000000;"><span
-                                class="add-on"><i
-                                class="icon-calendar"></i></span>
-                        </div>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="endDateLabel">
-                        <datetimepicker data-ng-model="endDate" data-format data-on-set-time="setEndDate(endDate)"
-                                        data-datetimepicker-config="{ dropdownSelector: '.my-toggle-select', startView:'day', minView:'day' }"></datetimepicker>
-                    </ul>
+                    <input type='text' class="form-control" id='datetimepicker2' ng-model="date" set-date="setEndDate(date)" types="endDate"
+                           picker
+                           style="display: inline-block; width: 194px; height: 30px; text-align: center !important;"/>
+                     <script type="text/javascript">
+                         $(function () {
+                             $('#datetimepicker2').datetimepicker({
+                                 locale: 'ru',
+                                 format: 'YYYY-MM-DD'
+                             });
+                         });
+                     </script>
                 </span>
             </li>
         </ul>
