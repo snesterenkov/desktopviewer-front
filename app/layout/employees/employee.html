@@ -9,7 +9,7 @@
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" ng-click="goToPreviousDate(date)"> < </button>
                 </span>
-                <input type='text' class="form-control" id='datetimepicker' ng-model="date" ng-change="goToSelectedDate(date)"
+                <input type='text' class="form-control" id='datetimepicker' ng-model="date" set-date="goToSelectedDate(date)"
                        picker
                        style="display: inline-block; text-align: center !important;"/>
                 <span class="input-group-btn">
